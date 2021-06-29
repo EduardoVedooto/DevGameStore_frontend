@@ -30,16 +30,19 @@ export default function Signin() {
     }
     setWaitingServer(true);
 
-    console.log("Passou");
-    // const promise = axios.post("http:localhost:4000/sign-in", { email, password });
-    // promise.then(() => {
-    //   setWaitingServer(false);
-    //   history.push("/");
-    // });
-    // promise.catch(err => {
-    //   setWaitingServer(false);
-    //   console.error(err.reponse);
-    // });
+    const promise = axios.post("http://localhost:4000/sign-in", { email, password });
+    promise.then(({ data }) => {
+      sessionStorage.setItem("session", JSON.stringify(data));
+      setWaitingServer(false);
+      history.push("/");
+    });
+    promise.catch(err => {
+      setWaitingServer(false);
+      if (err.response.status === 401) {
+        window.alert(err.response.data);
+      }
+      console.error(err.response);
+    });
   }
 
   return (
@@ -58,7 +61,6 @@ export default function Signin() {
           "Entrar"
         }</Button>
       </Form>
-
     </SigninContainer>
   );
 }
