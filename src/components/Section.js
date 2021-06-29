@@ -6,10 +6,9 @@ export default function Section({name, array}){
         <ThisSection>
             <h1>{name}</h1>
             <GamesHolder>
-              <Game array = {array}/>
-              <Game array = {array}/>
-              <Game array = {array}/>
-              <Game array = {array}/>
+              {array.slice(0, 5).map((e)=>
+                <Game image={e.image} title={e.name} description={e.description} price={e.price} id = {e.id} />
+              )}
             </GamesHolder>
         </ThisSection>
     )
@@ -24,7 +23,7 @@ const ThisSection = styled.div`
         font-family: 'Rubik';
         font-weight:700;
         color:#FFF;
-        font-size:2.2rem;
+        font-size:2.7rem;
     }
 `;
 
@@ -33,5 +32,10 @@ const GamesHolder = styled.div`
     display:flex;
     align-items: center;
     justify-content: space-between;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar {
+  display: none;
+}
 `;
 

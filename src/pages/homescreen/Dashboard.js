@@ -7,22 +7,27 @@ export default function Dashboard(){
     const [games, setGames] = useState([]);
 
     useEffect(() => {
-        console.log("Hello world!")
+        const request = axios.get('http://localhost:4000/dashboard')
+        request.then(response => {
+            setGames(response.data);
+        });
+        request.catch((error) => {
+            alert(error.response.data);
+        });
     }, []);
     return(
         <Container>
-            <Section name ={"Terror"} array = {"Teste"}/>
-            <Section name ={"Terror"} array = {"Teste"}/>
-            <Section name ={"Terror"} array = {"Teste"}/>
+            <Section name ={"Horror"} array = {games.filter(e => e.category === "Horror")}/>
+            <Section name ={"Adventure"} array = {games.filter(e => e.category === "Adventure")}/>
+            <Section name ={"Action"} array = {games.filter(e => e.category === "Action")}/>
         </Container>
     )
 }
 
 const Container = styled.div`
-    min-height:100vh;
-    min-width:100vw;
+    height:100%;
+    width:100%;
     background-color:#444444;
     margin-top:7rem;
-    padding-left:10%;
-    padding-right:10%;
+    padding-left:5%;
 `;

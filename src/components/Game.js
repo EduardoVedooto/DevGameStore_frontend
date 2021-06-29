@@ -1,20 +1,19 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
-export default function Game() {
+export default function Game({image,title, description, price, id}) {
+    console.log(price);
     return (
         <ThisGame>
             <GameImg>
-                {/*image*/}
-                <img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/59482a8821624867e000075b/banners/rvwoxh3kv2ewswdij8cs.jpg"/>
+                <img src={image}/>
             </GameImg>
             <GameInfo>
-                {/*title*/}
-                {/*description*/}
-                <h2>The Evil Within</h2>
-                <h3>Descrição</h3>
+                <h2>{title.length > 29? `${title.slice(0, 29)}...` : title}</h2>
+                <h3>{`${description.slice(0, 75)}...`}</h3>
                 <SeeMore>
-                    <h3>R$ 19,90</h3>
-                    <button>See more</button>
+                    <h3>{(price/100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL'})}</h3>
+                    <Link to={`/game/${id}`}><button>See more</button></Link>
                 </SeeMore>
             </GameInfo>
         </ThisGame>
@@ -31,8 +30,11 @@ const ThisGame = styled.div`
 `;
 
 const GameImg = styled.div`
+    height:11.6rem;
+    width:39.8rem;
     img{
-        width:100%;
+        height:11.6rem;
+        width:39.8rem;
         object-fit:fill;
         border-radius: 8px 8px 0 0;
     }
@@ -83,5 +85,6 @@ const SeeMore = styled.div`
     border:none;
     outline:none;
     padding: 10px;
+    cursor: pointer;
     }
 `;
