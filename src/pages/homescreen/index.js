@@ -1,8 +1,7 @@
+import Dashboard from "./Dashboard";
 const Homescreen = () => {
   return (
-    <span>
-      Olá mundo!
-    </span>
+    <Dashboard/>
   );
 }
 
