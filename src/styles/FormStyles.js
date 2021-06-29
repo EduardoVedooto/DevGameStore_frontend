@@ -64,7 +64,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   border: none;
   outline: none;
-  background-color: var(--color-darker);
+  background-color: ${props => props.disabled ? "var(--color-primary)" : "var(--color-darker)"};
   color: var(--color-light);
   cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
   padding: 1rem 3rem;
@@ -77,6 +77,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: ${props => props.disabled ? "none" : "default"};
   &:hover{
     box-shadow: ${props => props.disabled ? "none" : "0 0 .5rem rgba(0,0,0,.5)"};
     background-color: var(--color-primary);

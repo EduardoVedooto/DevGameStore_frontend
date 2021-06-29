@@ -43,7 +43,7 @@ export default function Signup() {
     const promise = axios.post("http://localhost:4000/sign-up", { name, email, password, picture });
     promise.then(() => {
       setWaitingServer(false);
-      history.push("/signin");
+      history.push("/sign-in");
     });
     promise.catch(err => {
       setWaitingServer(false);

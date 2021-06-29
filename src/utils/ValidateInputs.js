@@ -28,6 +28,22 @@ const Validate = (data, from) => {
       };
     }
   }
+
+  else if (from === "signin") {
+    const { email, password } = data;
+    if (!validEmail.test(email)) {
+      return {
+        result: false,
+        message: "Email inválido"
+      };
+    }
+    if (password.length < 6) {
+      return {
+        result: false,
+        message: "Senha de, no mínimo, 6 caracteres"
+      };
+    }
+  }
   return { result: true };
 }
 
