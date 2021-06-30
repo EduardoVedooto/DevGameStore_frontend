@@ -2,13 +2,13 @@ import styled from "styled-components";
 import Game from './Game';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-export default function Section({name, array, category}){
+export default function Section({ name, array, category }) {
 
-  function shuffle() { 
-    return Math.random() - 0.5; 
+  function shuffle() {
+    return Math.random() - 0.5;
   }
 
   const responsive = {
@@ -30,31 +30,31 @@ export default function Section({name, array, category}){
     }
   };
 
-    return(
-        <ThisSection>
-            <ThisCategory>
-              <h1>{name}</h1>
-              <Link to={`/${category}`}><button>See more from this category</button></Link>
-            </ThisCategory>
-            <Carousel responsive = {responsive}
-            infinite = {true}
-            autoPlay = {true}
-            autoPlaySpeed = {4000}
-            showDots = {true}
-            >
-              {array.sort(shuffle).slice(0, 5).map((e)=>
-                <Game image={e.image} title={e.name} description={e.description} price={e.price} id = {e.id} />
-              )}
-           
-            </Carousel>
-        </ThisSection>
-    )
+  return (
+    <ThisSection>
+      <ThisCategory>
+        <h1>{name}</h1>
+        <Link to={`/games/${category}`}><button>See more from this category</button></Link>
+      </ThisCategory>
+      <Carousel responsive={responsive}
+        infinite={true}
+        autoPlay={true}
+        autoPlaySpeed={4000}
+        showDots={true}
+      >
+        {array.sort(shuffle).slice(0, 5).map((e) =>
+          <Game image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
+        )}
+      </Carousel>
+    </ThisSection>
+  )
 }
 
 const ThisSection = styled.div`
     width:100%;
     margin:0 auto;
     margin-top: 5rem;
+    padding-left:5%;
 `;
 
 const ThisCategory = styled.div`

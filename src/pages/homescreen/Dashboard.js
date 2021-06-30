@@ -2,6 +2,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Section from "../../components/Section";
+import Footer from "../../components/Footer";
 
 export default function Dashboard(){
     const [games, setGames] = useState([]);
@@ -20,6 +21,7 @@ export default function Dashboard(){
             <Section name ={"Trending in Horror"} array = {games.filter(e => e.category === "Horror")} category = {"Horror"}/>
             <Section name ={"Trending in Adventure"} array = {games.filter(e => e.category === "Adventure")} category = {"Adventure"}/>
             <Section name ={"Trending in Action"} array = {games.filter(e => e.category === "Action")} category = {"Action"}/>
+            <Footer/>
         </Container>
     )
 }
@@ -29,5 +31,4 @@ const Container = styled.div`
     width:100%;
     background-color:#444444;
     margin-top:7rem;
-    padding-left:5%;
 `;
