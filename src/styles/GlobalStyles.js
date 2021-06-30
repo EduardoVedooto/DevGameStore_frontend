@@ -56,10 +56,19 @@ const GlobalStyles = createGlobalStyle`
   }
   :root{
     font-size: 62.5%;
+    --color-dark: #444;
+    --color-darker: #171717;
+    --color-light: #bdbdbd;
+    --color-lighter: #EDEDED;
+    --color-primary: #DA0037;
   }
   body {
     line-height: 1;
     background-color:#444444;
+    font-family: 'Rubik', sans-serif;
+  }
+  * {
+    box-sizing: border-box;
   }
 `;
 
