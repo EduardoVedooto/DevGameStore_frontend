@@ -33,7 +33,7 @@ export default function Section({ name, array, category }) {
   return (
     <ThisSection>
       <ThisCategory>
-        <h1>{name}</h1>
+        <TitleHolder><h1 className={name}>{`Trending in ${name}`}</h1></TitleHolder>
         <Link to={`/games/${category}`}><button>See more from this category</button></Link>
       </ThisCategory>
       <Carousel responsive={responsive}
@@ -42,8 +42,8 @@ export default function Section({ name, array, category }) {
         autoPlaySpeed={4000}
         showDots={true}
       >
-        {array.sort(shuffle).slice(0, 5).map((e) =>
-          <Game image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
+        {array.sort(shuffle).slice(0, 5).map((e, i) =>
+          <Game key= {i} image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
         )}
       </Carousel>
     </ThisSection>
@@ -79,13 +79,29 @@ justify-content: space-between;
     cursor: pointer;
     margin-right:5rem;
   }
+`;
 
+const TitleHolder = styled.div`
+  padding:1.5rem;
+  background-color:#000;
+  border-radius:10rem;
+  display:flex;
+ 
+  text-align: center;
   h1{
-        margin-left:3rem;
-        font-family: 'Rubik';
         font-weight:700;
         color:#FFF;
-        font-size:2.7rem;
+        font-size:4rem;
+        &.Horror{
+            font-family:'Creepster';
+        }
+        &.Adventure{
+            font-family:'Kranky';
+        }
+        &.Action{
+            font-family:'Nosifer';
+            font-size:3rem;
+        }
     }
 `;
 
