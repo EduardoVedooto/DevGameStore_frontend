@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsPersonFill, BsPersonPlusFill, BsFillPersonLinesFill } from "react-icons/bs";
 import { RiLoginBoxFill, RiLogoutBoxFill } from "react-icons/ri";
