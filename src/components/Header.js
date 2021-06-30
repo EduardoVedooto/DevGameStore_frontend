@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
-import { BsPersonFill, BsPersonPlusFill } from "react-icons/bs";
-import { RiLoginBoxFill } from "react-icons/ri";
+import { BsPersonFill, BsPersonPlusFill, BsFillPersonLinesFill } from "react-icons/bs";
+import { RiLoginBoxFill, RiLogoutBoxFill } from "react-icons/ri";
 import { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  const session = JSON.parse(sessionStorage.getItem('session'));
+
+
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -16,8 +20,19 @@ export default function Header() {
         </Link>
         <section>SERÀ O SEARCHBAR</section>
         <Menu>
-          <MenuItem open={open} setOpen={setOpen} icon={<BsPersonFill />}><DropdownMenu setOpen={setOpen} /></MenuItem>
-          <MenuItem icon={<FaShoppingCart />} to="/cart" />
+          {
+            session ?
+              <>
+                <MenuItem open={open} setOpen={setOpen} img={session.user.picture} icon={<BsPersonFill />}><DropdownMenu setOpen={setOpen} user={session.user} /></MenuItem>
+                <MenuItem icon={<FaShoppingCart />} to="/cart" />
+              </>
+              :
+              <>
+                <MenuItem open={open} setOpen={setOpen} icon={<BsPersonFill />}><DropdownMenu setOpen={setOpen} /></MenuItem>
+                <MenuItem icon={<FaShoppingCart />} to="/cart" />
+              </>
+
+          }
         </Menu>
       </HeaderContent>
     </HeaderContainer>
@@ -37,7 +52,10 @@ function MenuItem(props) {
     }
     }>
       <Icon>
-        {props.icon}
+        {props.img ?
+          <img src={props.img} alt="Foto de perfil" />
+          :
+          props.icon}
       </Icon>
 
       {props.open && props.children}
@@ -46,6 +64,7 @@ function MenuItem(props) {
 }
 
 function DropdownMenu(props) {
+  const user = props?.user;
   const history = useHistory();
   const dropdown = useRef();
   useEffect(() => {
@@ -59,7 +78,16 @@ function DropdownMenu(props) {
 
   const DropdownItem = props => {
     return (
-      <DropdownItemStyle onClick={() => history.push(props.to)}>
+      <DropdownItemStyle onClick={() => {
+        if (props.to === "logout") {
+          if (window.confirm("Deseja encerrar a sessão?")) {
+            sessionStorage.removeItem("session");
+            // window.location.reload();
+          }
+        } else {
+          history.push(props.to)
+        }
+      }}>
         <span>{props.icon}</span>
         {props.children}
       </DropdownItemStyle>
@@ -68,8 +96,17 @@ function DropdownMenu(props) {
 
   return (
     <DropdownStyle ref={dropdown}>
-      <DropdownItem to="/sign-up" icon={<BsPersonPlusFill />}>Cadastrar</DropdownItem>
-      <DropdownItem to="/sign-in" icon={<RiLoginBoxFill />}>Entrar</DropdownItem>
+      {user ?
+        <>
+          <DropdownItem to="/profile/:id" icon={<BsFillPersonLinesFill />}>Perfil</DropdownItem>
+          <DropdownItem to="logout" icon={<RiLogoutBoxFill />}>Sair</DropdownItem>
+        </>
+        :
+        <>
+          <DropdownItem to="/sign-up" icon={<BsPersonPlusFill />}>Cadastrar</DropdownItem>
+          <DropdownItem to="/sign-in" icon={<RiLoginBoxFill />}>Entrar</DropdownItem>
+        </>
+      }
     </DropdownStyle>
   );
 }
@@ -127,6 +164,12 @@ const MenuItemStyle = styled.li`
     width: 80%;
     height: 80%;
     color: var(--color-primary);
+  }
+  img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-radius: 50%;
   }
 `;
 
