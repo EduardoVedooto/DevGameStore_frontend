@@ -1,8 +1,10 @@
+import Header from "../../components/Header";
+
 const Homescreen = () => {
   return (
-    <span>
+    <Header>
       Olá mundo!
-    </span>
+    </Header>
   );
 }
 

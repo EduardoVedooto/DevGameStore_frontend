@@ -33,15 +33,12 @@ export const FormTitle = styled.h1`
   color: var(--color-darker);
   @media(max-width: 614px) {
     text-align: center;
-    width: 25rem;
+    width: 100%;
     height: 6rem;
     position: static;
     margin-bottom: auto;
-    text-indent: center;
-    text-justify: center;
-    align-self: center;
     line-height: 5rem;
-    font-stretch: expanded;
+    border-radius: 0;
   }
 `;
 

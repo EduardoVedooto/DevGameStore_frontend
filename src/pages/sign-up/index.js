@@ -5,6 +5,7 @@ import Validate from "../../utils/ValidateInputs";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Loader from "react-loader-spinner";
+import Header from "../../components/Header";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -59,6 +60,7 @@ export default function Signup() {
 
   return (
     <SignupContainer>
+      <Header />
       <Form onSubmit={handleSubmit}>
         <FormTitle>Novo usuário</FormTitle>
         <Input value={name} placeholder="Nome" onChange={handleChange} required />

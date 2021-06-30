@@ -5,6 +5,7 @@ import { useState } from "react";
 import Validate from "../../utils/ValidateInputs";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Header from "../../components/Header";
 
 export default function Signin() {
   const [isWaitingServer, setWaitingServer] = useState(false);
@@ -47,6 +48,7 @@ export default function Signin() {
 
   return (
     <SigninContainer>
+      <Header />
       <Form onSubmit={handleSubmit}>
         <FormTitle>Inicar sessão</FormTitle>
         <Input value={email} placeholder="E-mail" onChange={handleChange} required />
