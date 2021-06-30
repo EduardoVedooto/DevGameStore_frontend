@@ -17,9 +17,9 @@ export default function Dashboard(){
     }, []);
     return(
         <Container>
-            <Section name ={"Horror"} array = {games.filter(e => e.category === "Horror")}/>
-            <Section name ={"Adventure"} array = {games.filter(e => e.category === "Adventure")}/>
-            <Section name ={"Action"} array = {games.filter(e => e.category === "Action")}/>
+            <Section name ={"Trending in Horror"} array = {games.filter(e => e.category === "Horror")} category = {"Horror"}/>
+            <Section name ={"Trending in Adventure"} array = {games.filter(e => e.category === "Adventure")} category = {"Adventure"}/>
+            <Section name ={"Trending in Action"} array = {games.filter(e => e.category === "Action")} category = {"Action"}/>
         </Container>
     )
 }

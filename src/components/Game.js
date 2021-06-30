@@ -2,15 +2,14 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 export default function Game({image,title, description, price, id}) {
-    console.log(price);
     return (
         <ThisGame>
             <GameImg>
-                <img src={image}/>
+                <img src={image} alt = {title}/>
             </GameImg>
             <GameInfo>
                 <h2>{title.length > 29? `${title.slice(0, 29)}...` : title}</h2>
-                <h3>{`${description.slice(0, 75)}...`}</h3>
+                <h3>{`${description.slice(0, 100)}...`}</h3>
                 <SeeMore>
                     <h3>{(price/100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL'})}</h3>
                     <Link to={`/game/${id}`}><button>See more</button></Link>
@@ -27,14 +26,15 @@ const ThisGame = styled.div`
     background-color: #171717;
     border-radius: 0.8rem;
     margin-right:5rem;
+    margin-bottom:2.5rem;
 `;
 
 const GameImg = styled.div`
-    height:11.6rem;
-    width:39.8rem;
+    height:20rem;
+    width:100%;
     img{
-        height:11.6rem;
-        width:39.8rem;
+        height:100%;
+        width:100%;
         object-fit:fill;
         border-radius: 8px 8px 0 0;
     }
@@ -43,6 +43,7 @@ const GameImg = styled.div`
 const GameInfo = styled.div`
     width:100%;
     padding:2.1rem 1.5rem 1.5rem 0.9rem;
+    text-overflow: ellipsis;
     h2{
         font-family: 'Rubik';
         font-weight:700;
