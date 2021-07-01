@@ -9,7 +9,9 @@ export default function Game({image,title, description, price, id}) {
             </GameImg>
             <GameInfo>
                 <h2>{title.length > 29? `${title.slice(0, 29)}...` : title}</h2>
+                <div className = "info">
                 <h3>{`${description.slice(0, 100)}...`}</h3>
+                </div>
                 <SeeMore>
                     <h3>{(price/100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL'})}</h3>
                     <Link to={`/game/${id}`}><button>See more</button></Link>
@@ -42,7 +44,7 @@ const GameImg = styled.div`
 
 const GameInfo = styled.div`
     width:100%;
-    padding:2.1rem 1.5rem 1.5rem 0.9rem;
+    padding:2.1rem 1.5rem 1.5rem 1.5rem;
     text-overflow: ellipsis;
     h2{
         font-family: 'Rubik';
@@ -50,12 +52,19 @@ const GameInfo = styled.div`
         color:#FFF;
         font-size:2.2rem;
     }
-    h3{
-        font-family: 'Rubik';
-        font-weight:400;
-        color:#FFF;
-        font-size:1.8rem;
-        margin-top:0.7rem;
+
+    .info{
+        height:5.4rem;
+        text-overflow: ellipsis;
+        
+        h3{
+            font-family: 'Rubik';
+            font-weight:400;
+            color:#FFF;
+            font-size:1.8rem;
+            margin-top:0.7rem;
+        }
+
     }
 `;
 
