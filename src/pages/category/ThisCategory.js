@@ -68,7 +68,7 @@ export default function ThisCategory() {
 
 const Container = styled.div`
     width:100%;
-    margin-top: 7rem;
+    margin-top: 12rem;
     padding-left:5%;
     padding-right:3%;
 `;
