@@ -2,20 +2,23 @@ import styled from "styled-components";
 import axios from "axios";
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
 import { TiShoppingCart } from "react-icons/ti";
+import Loading from '../../components/Loading';
 
 export default function ThisGame() {
     const { id } = useParams()
     const [game, setGame] = useState([]);
     const history = useHistory();
+    const [isWaitingServer, setWaitingServer] = useState(true);
 
     useEffect(() => {
         const request = axios.get(`https://dev-game-store.herokuapp.com/game/${id}`)
         request.then(response => {
             setGame(response.data);
+            setWaitingServer(false);
         });
         request.catch((error) => {
+            setWaitingServer(false);
             console.log(error.response.data);
             alert(error.response.data);
         });
@@ -40,6 +43,15 @@ export default function ThisGame() {
         history.push('/cart');
     }
 
+    if (isWaitingServer) {
+        return (
+          <>
+            <Loading/>
+          </>
+        );
+      }
+
+
     return (
         <>
             <Container style={{
@@ -60,7 +72,6 @@ export default function ThisGame() {
             <ButtonHolder onClick={addGame}>
                 <AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
             </ButtonHolder>
-            <Footer />
         </>
 
     )
