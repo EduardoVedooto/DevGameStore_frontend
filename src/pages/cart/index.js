@@ -1,10 +1,11 @@
-import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice } from "./style";
+import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle } from "./style";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
 
@@ -71,11 +72,23 @@ export default function Cart() {
                 <RemoveButton><FaTrashAlt /></RemoveButton>
               </ItemFooter>
             </GameInfo>
-
           </Item>
         ))}
       </ListItens>
-      <OrderInfo></OrderInfo>
+      <OrderInfo>
+        <OrderTitle>Pedido</OrderTitle>
+        {user ?
+          <></>
+          :
+          <UserOff>
+            <TitleOff>
+              <strong>Você está offline</strong> 😕<br />
+              Faça <Link to="/sign-in">login</Link>, ou
+              <Link to="/sign-up"> cadastre-se</Link> para continuar com a compra!
+            </TitleOff>
+          </UserOff>
+        }
+      </OrderInfo>
     </CartContainer >
   );
 }

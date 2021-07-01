@@ -42,9 +42,12 @@ export const Item = styled.li`
 `;
 
 export const OrderInfo = styled.aside`
-  background-color: red;
+  background-color: var(--color-darker);
+  border-radius: 1rem;
   width: 100%;
-  
+  color: var(--color-lighter);
+  padding: 1rem;
+  height: fit-content;
 `;
 
 export const TitleEmptyList = styled.h2`
@@ -131,10 +134,41 @@ export const RemoveButton = styled(Button)`
       color: var(--color-darker);
     }
   }
-
 `;
 
 export const GamePrice = styled.span`
   font-size: 1.8rem;
   font-weight: 700;
+`;
+
+export const OrderTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+`;
+
+export const UserOff = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 2.5rem 0;
+`;
+
+export const TitleOff = styled.h3`
+  font-size: 1.8rem;
+  text-align: center;
+  line-height: 3rem;
+  strong{
+    color: var(--color-primary);
+  }
+
+  a {
+    color: var(--color-primary);
+    :hover{
+      font-weight: 700;
+      text-decoration: underline;
+    }
+  }
 `;
