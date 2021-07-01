@@ -8,7 +8,6 @@ import { TiShoppingCart } from "react-icons/ti";
 export default function ThisGame() {
     const { id } = useParams()
     const [game, setGame] = useState([]);
-    console.log(game.background);
 
     useEffect(() => {
         const request = axios.get(`http://localhost:4000/game/${id}`)
@@ -23,22 +22,23 @@ export default function ThisGame() {
     return (
         <>
             <Container style={{
-                    backgroundImage: `url('${game.background}')`
-                }}>
+                backgroundImage: `url('${game.background}')`
+            }}>
                 <GameHolder>
                     <TitleHolder><h1>{game.name}</h1></TitleHolder>
                     <GameInfo>
                         <ImgHolder>
-                        <img src={game.image} alt={game.name}/>
+                            <img src={game.image} alt={game.name} />
                         </ImgHolder>
                         <InfoHolder>
                             <h2>{game.description}</h2>
                         </InfoHolder>
                     </GameInfo>
-                    <AddToChart><TiShoppingCart/><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
                 </GameHolder>
-                
             </Container>
+            <ButtonHolder>
+                <AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
+            </ButtonHolder>
             <Footer />
         </>
 
@@ -47,7 +47,6 @@ export default function ThisGame() {
 
 const Container = styled.div`
     width:100%;
-    height:100vh;
     margin-top:7.5rem;
     background-repeat: no-repeat;
     background-size:100% 40rem;
@@ -115,7 +114,7 @@ const InfoHolder = styled.div`
 `;
 
 const AddToChart = styled.button`
-    margin-top:2rem;
+    justify-self: center;
     box-sizing:border-box;
     background: #DA0037;
     border-radius: 2rem;
@@ -133,4 +132,12 @@ const AddToChart = styled.button`
     h1{
     margin-left:1rem;
     }
+`;
+
+const ButtonHolder = styled.div`
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:2rem;
 `;
