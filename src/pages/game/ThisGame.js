@@ -10,11 +10,12 @@ export default function ThisGame() {
     const [game, setGame] = useState([]);
 
     useEffect(() => {
-        const request = axios.get(`http://localhost:4000/game/${id}`)
+        const request = axios.get(`https://dev-game-store.herokuapp.com/game/${id}`)
         request.then(response => {
             setGame(response.data);
         });
         request.catch((error) => {
+            console.log(error.response.data);
             alert(error.response.data);
         });
     }, [id]);
@@ -47,7 +48,7 @@ export default function ThisGame() {
 
 const Container = styled.div`
     width:100%;
-    margin-top:7.5rem;
+    margin-top:10rem;
     background-repeat: no-repeat;
     background-size:100% 40rem;
 `;
@@ -69,7 +70,7 @@ const GameHolder = styled.div`
 const TitleHolder = styled.div`
   padding:1.5rem;
   width:100%;
-  background-color:#000;
+  background-color:var(--color-darker);
   display:flex;
   text-align: center;
   justify-content: center;

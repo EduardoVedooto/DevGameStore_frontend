@@ -43,7 +43,7 @@ export default function Section({ name, array, category }) {
         showDots={true}
       >
         {array.sort(shuffle).slice(0, 5).map((e, i) =>
-          <Game key= {i} image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
+          <Game key={i} image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
         )}
       </Carousel>
     </ThisSection>

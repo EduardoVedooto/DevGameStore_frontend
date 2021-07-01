@@ -5,11 +5,11 @@ import Section from "../../components/Section";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 
-export default function Dashboard(){
+export default function Dashboard() {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
-        const request = axios.get('http://localhost:4000/dashboard')
+        const request = axios.get('https://dev-game-store.herokuapp.com/dashboard')
         request.then(response => {
             setGames(response.data);
         });
@@ -17,13 +17,13 @@ export default function Dashboard(){
             alert(error.response.data);
         });
     }, []);
-    return(
+    return (
         <Container>
-            <Header/>
-            <Section name ={"Horror"} array = {games.filter(e => e.category === "Horror")} category = {"Horror"}/>
-            <Section name ={"Adventure"} array = {games.filter(e => e.category === "Adventure")} category = {"Adventure"}/>
-            <Section name ={"Action"} array = {games.filter(e => e.category === "Action")} category = {"Action"}/>
-            <Footer/>
+            <Header />
+            <Section name={"Horror"} array={games.filter(e => e.category === "Horror")} category={"Horror"} />
+            <Section name={"Adventure"} array={games.filter(e => e.category === "Adventure")} category={"Adventure"} />
+            <Section name={"Action"} array={games.filter(e => e.category === "Action")} category={"Action"} />
+            <Footer />
         </Container>
     )
 }
@@ -32,5 +32,5 @@ const Container = styled.div`
     height:100%;
     width:100%;
     background-color:#444444;
-    margin-top:7rem;
+    margin-top:12rem;
 `;

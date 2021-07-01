@@ -1,8 +1,13 @@
 import ThisGame from "./ThisGame";
+import Header from "../../components/Header";
+
 const Game = () => {
-    return (
-      <ThisGame/>
-    );
-  }
-  
-  export default Game;
+  return (
+    <>
+      <Header />
+      <ThisGame />
+    </>
+  );
+}
+
+export default Game;

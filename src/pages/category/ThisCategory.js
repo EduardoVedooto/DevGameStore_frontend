@@ -32,7 +32,7 @@ export default function ThisCategory() {
     };
 
     useEffect(() => {
-        const request = axios.get(`http://localhost:4000/games/${category}`)
+        const request = axios.get(`https://dev-game-store.herokuapp.com/games/${category}`)
         request.then(response => {
             setGames(response.data);
         });
@@ -43,32 +43,32 @@ export default function ThisCategory() {
 
     return (
         <>
-        <Container>
-            <TitleHolder>
-                <h1 className={category}>{category}</h1>
-                <ContentHolder>
-                    <Carousel responsive={responsive}
-                        infinite={true}
-                        autoPlay={true}
-                        autoPlaySpeed={4000}
-                        showDots={true}
-                        renderButtonGroupOutside={true}
-                    >
-                        {games.map((e, i) =>
-                            <Game key={i} image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
-                        )}
-                    </Carousel>
-                </ContentHolder>
-            </TitleHolder>
-        </Container>
-        <Footer/>
+            <Container>
+                <TitleHolder>
+                    <h1 className={category}>{category}</h1>
+                    <ContentHolder>
+                        <Carousel responsive={responsive}
+                            infinite={true}
+                            autoPlay={true}
+                            autoPlaySpeed={4000}
+                            showDots={true}
+                            renderButtonGroupOutside={true}
+                        >
+                            {games.map((e, i) =>
+                                <Game key={i} image={e.image} title={e.name} description={e.description} price={e.price} id={e.id} />
+                            )}
+                        </Carousel>
+                    </ContentHolder>
+                </TitleHolder>
+            </Container>
+            <Footer />
         </>
     )
 }
 
 const Container = styled.div`
     width:100%;
-    margin-top: 7rem;
+    margin-top: 12rem;
     padding-left:5%;
     padding-right:3%;
 `;
