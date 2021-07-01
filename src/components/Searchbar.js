@@ -83,49 +83,48 @@ const Dropdown = styled.div`
     @media(max-width:614px) {
         width:80%;
     }
-    }
+
     .element{
         display: flex;
         border: 0.1rem solid #444;
         background-color:#000;
         align-items:center;
         width:100%;
-        @media(max-width: 614px) {
-        width:100%;
-    }
-    .imgholder{
-        width:30%;
-        height:100%;
-        @media(max-width: 614px) {
-        display:none;
-    }
-        img{
-        width:100%;
-        height:100%;
-        object-fit: cover;
-    }
- }
+            @media(max-width: 614px) {
+            width:100%;
+        }
 
-    .textholder{
-    padding: 1rem;
-    color:#FFF;
-    font-family:'Rubik';
-    font-size:2rem;
-    width:70%;
-    height:100%;
-    border:none;
-    margin-left:1rem;
-    text-align:center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @media(max-width: 614px) {
-        height:70%;
-        width:100%;   
+        .imgholder{
+            width:30%;
+            height:100%;
+                @media(max-width: 614px) {
+                display:none;
+            }
+                img{
+                width:100%;
+                height:100%;
+                object-fit: cover;
+            }
+        }
+        .textholder{
+        padding: 1rem;
+        color:#FFF;
+        font-family:'Rubik';
+        font-size:2rem;
+        width:70%;
+        height:100%;
+        border:none;
+        margin-left:1rem;
+        text-align:center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @media(max-width: 614px) {
+            height:70%;
+            width:100%;   
+        }
+        }
     }
-    }
-}
-    
 `;
 
 const SearchHolder = styled.div`
