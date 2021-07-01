@@ -22,6 +22,7 @@ export const ListItens = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-bottom: 2rem;
 `;
 
 export const Item = styled.li`
@@ -33,6 +34,7 @@ export const Item = styled.li`
   background-color: var(--color-darker);
   color: var(--color-lighter);
   border-radius: 1rem;
+  cursor: pointer;
   
   &:hover{
     h3 {

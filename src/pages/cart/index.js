@@ -15,14 +15,26 @@ export default function Cart() {
   const user = JSON.parse(sessionStorage.getItem("session"))?.user;
   const history = useHistory();
 
+  const removeGame = (id, event) => {
+    event.stopPropagation();
+    if (window.confirm("Deseja remover o jogo do seu carrinho?")) {
+      const cart = JSON.parse(sessionStorage.getItem("cart"));
+      cart.splice(cart.indexOf(id), 1);
+      sessionStorage.setItem("cart", JSON.stringify(cart));
+      const games = [...gamesList];
+      const gameRemoved = games.find(game => game.id === id);
+      games.splice(games.indexOf(gameRemoved), 1);
+      setGamesList(games);
+    }
+  }
+
   useEffect(() => {
-    if (gamesIds) {
+    if (gamesIds && gamesIds.length) {
       const promise = axios.post("http://localhost:4000/cart", {
         ids: gamesIds || []
       });
       promise.then(({ data }) => {
         setWaitingServer(false);
-        console.log(data);
         setGamesList(data);
       });
       promise.catch(err => {
@@ -63,13 +75,13 @@ export default function Cart() {
       <ListItens>
         <ListTitle>Seu carrinho</ListTitle>
         {gamesList && gamesList.map(game => (
-          <Item key={game.id}>
+          <Item key={game.id} onClick={() => history.push(`/game/${game.id}`)}>
             <GameCover src={game.image} alt={game.name} />
             <GameInfo>
               <GameTitle>{game.name}</GameTitle>
               <ItemFooter>
                 <GamePrice>{(game.price / 100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}</GamePrice>
-                <RemoveButton><FaTrashAlt /></RemoveButton>
+                <RemoveButton onClick={e => removeGame(game.id, e)}><FaTrashAlt /></RemoveButton>
               </ItemFooter>
             </GameInfo>
           </Item>
