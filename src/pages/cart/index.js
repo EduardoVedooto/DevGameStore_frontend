@@ -1,13 +1,32 @@
-import { CartContainer, ListItens, ListTitle, Item, OrderInfo } from "./style";
+import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button } from "./style";
 import Header from "../../components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Cart() {
 
-  const [gamesList, SetGamesList] = useState([]);
-
-
+  const [gamesList, SetGamesList] = useState();
+  const gamesIds = JSON.parse(sessionStorage.getItem("cart"));
   const user = JSON.parse(sessionStorage.getItem("session"))?.user;
+  const history = useHistory();
+
+
+  // useEffect(() => {
+  // }, []); //eslint-disable-line
+  if (!gamesIds || !gamesIds.length) {
+    return (
+      <CartContainerEmpty>
+        <Header />
+
+        <TitleEmptyList>Seu carrinho está vazio</TitleEmptyList>
+        <Button onClick={() => history.push("/")}>Voltar para home</Button>
+      </CartContainerEmpty>
+    );
+  }
+
+
+
+  console.log(gamesList);
 
   return (
     <CartContainer>
@@ -15,7 +34,7 @@ export default function Cart() {
       <ListItens>
         <ListTitle>Seu carrinho</ListTitle>
         {
-          gamesList.length ?
+          gamesList ?
             gamesList.map(game => (
               <Item>
 
@@ -24,9 +43,6 @@ export default function Cart() {
             :
             <h3>Seu carrinho está vazio</h3>
         }
-        <Item>
-          <img src="#"></img>
-        </Item>
       </ListItens>
       <OrderInfo></OrderInfo>
     </CartContainer >

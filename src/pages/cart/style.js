@@ -34,3 +34,37 @@ export const OrderInfo = styled.aside`
   width: 100%;
   height: 10rem;
 `;
+
+export const TitleEmptyList = styled.h2`
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-lighter);
+  user-select: none;
+`;
+
+export const CartContainerEmpty = styled(CartContainer)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  line-height: 3rem;
+`;
+
+export const Button = styled.button`
+  background-color: var(--color-primary);
+  padding: 1rem 3rem;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 2.0rem;
+  font-weight: 700;
+  transition: all 300ms ease-in-out;
+  &:hover{
+    filter: brightness(1.3);
+    box-shadow: 0 0 1rem rgba(0,0,0,.5);
+    color: var(--color-darker)
+  }
+`;
