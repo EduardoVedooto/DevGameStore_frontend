@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
+import { TiShoppingCart } from "react-icons/ti";
+
 export default function ThisGame() {
     const { id } = useParams()
     const [game, setGame] = useState([]);
@@ -27,13 +29,15 @@ export default function ThisGame() {
                     <TitleHolder><h1>{game.name}</h1></TitleHolder>
                     <GameInfo>
                         <ImgHolder>
-                        <img src={game.image}/>
+                        <img src={game.image} alt={game.name}/>
                         </ImgHolder>
                         <InfoHolder>
                             <h2>{game.description}</h2>
                         </InfoHolder>
                     </GameInfo>
+                    <AddToChart><TiShoppingCart/><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
                 </GameHolder>
+                
             </Container>
             <Footer />
         </>
@@ -46,6 +50,7 @@ const Container = styled.div`
     height:100vh;
     margin-top:7.5rem;
     background-repeat: no-repeat;
+    background-size:100% 40rem;
 `;
 
 const GameHolder = styled.div`
@@ -66,7 +71,6 @@ const TitleHolder = styled.div`
   padding:1.5rem;
   width:100%;
   background-color:#000;
-  border-radius:0 0 10rem 10rem;
   display:flex;
   text-align: center;
   justify-content: center;
@@ -94,15 +98,39 @@ const ImgHolder = styled.div`
 `;
 
 const InfoHolder = styled.div`
-    background-color:#444;
-    margin-top:10rem;
+    padding:2rem;
+    border-radius:2rem;
+    background-color:#000;
+    margin-top:2rem;
     width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
+    text-align:justify;
     h2{
         font-family:'Rubik';
         font-size:2rem;
         color:#FFFFFF;
+    }
+`;
+
+const AddToChart = styled.button`
+    margin-top:2rem;
+    box-sizing:border-box;
+    background: #DA0037;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border:none;
+    outline:none;
+    padding: 2rem;
+    cursor: pointer;
+    font-family: 'Rubik';
+    font-size: 3rem;
+    color:#FFF;
+    h1{
+    margin-left:1rem;
     }
 `;

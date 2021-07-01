@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Section from "../../components/Section";
 import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 export default function Dashboard(){
     const [games, setGames] = useState([]);
@@ -18,6 +19,7 @@ export default function Dashboard(){
     }, []);
     return(
         <Container>
+            <Header/>
             <Section name ={"Horror"} array = {games.filter(e => e.category === "Horror")} category = {"Horror"}/>
             <Section name ={"Adventure"} array = {games.filter(e => e.category === "Adventure")} category = {"Adventure"}/>
             <Section name ={"Action"} array = {games.filter(e => e.category === "Action")} category = {"Action"}/>
