@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <Container>
       <Social>
-        <h1>Nossas redes sociais</h1>
+        <h1>Our social media</h1>
         <div className="holder">
           <AiFillInstagram className="icon"
             onClick={() => openNewTab("http://instagram.com")}
@@ -27,7 +27,7 @@ const Footer = () => {
         </div>
       </Social>
       <Social>
-        <Link to="/contact-us"><h1>Fale conosco</h1></Link>
+        <Link to="/contact-us"><h1>Contact us!</h1></Link>
       </Social>
     </Container>
   );
@@ -41,6 +41,9 @@ const Container = styled.div`
   width:100%;
   margin-top: 5rem;
   display:flex;
+  @media(max-width: 614px) {
+    flex-direction:column;
+  }
 `;
 
 const Social = styled.div`
@@ -50,6 +53,7 @@ const Social = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   h1{
   font-family: 'Rubik';
@@ -65,11 +69,20 @@ const Social = styled.div`
     color:white;
     align-items: center;
     justify-content: space-between;
+    @media(max-width: 614px) {
+    width: 50%;
+  }
+    
   }
 
   .icon{
     width:5rem;
     height:5rem;
     cursor: pointer;
+  }
+
+  @media(max-width: 614px) {
+    width: 100%;
+    padding:2rem;
   }
 `;
