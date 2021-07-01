@@ -38,7 +38,7 @@ export default function ThisGame() {
                 </GameHolder>
             </Container>
             <ButtonHolder>
-                <Link to={`/cart/${id}`}><AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart></Link>
+                <Link to={`/cart/${id}`}><AddToChart><TiShoppingCart /><h1>Add this game to chart!</h1></AddToChart></Link>
             </ButtonHolder>
             <Footer />
         </>
@@ -52,6 +52,9 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size:100% 40rem;
     background-position: center 0;
+    @media(max-width: 614px) {
+    background-size:0;
+  }
 `;
 
 const GameHolder = styled.div`
@@ -66,6 +69,9 @@ const GameHolder = styled.div`
         color:#FFF;
         font-size:3.5rem;
     }
+    @media(max-width: 614px) {
+    width: 100%;
+  }
 `;
 
 const TitleHolder = styled.div`
@@ -89,6 +95,10 @@ const GameInfo = styled.div`
     border-radius:10rem;
     justify-content: center;
     margin-top:25rem;
+    @media(max-width: 614px) {
+    width: 100%;
+    margin-top:2rem;
+  }
 `;
 
 const ImgHolder = styled.div`
@@ -96,6 +106,11 @@ const ImgHolder = styled.div`
     height:15rem;
     display:flex;
     justify-content: center;
+    @media(max-width: 614px) {
+    img{
+        width:100%;
+    }
+  }
 `;
 
 const InfoHolder = styled.div`
@@ -113,6 +128,9 @@ const InfoHolder = styled.div`
         font-size:2rem;
         color:#FFFFFF;
     }
+    @media(max-width: 614px) {
+    border-radius:0;
+  }
 `;
 
 const AddToChart = styled.button`
@@ -134,6 +152,10 @@ const AddToChart = styled.button`
     h1{
     margin-left:1rem;
     }
+    @media(max-width: 614px) {
+    border-radius:0;
+    width:100%;
+  }
 `;
 
 const ButtonHolder = styled.div`
@@ -142,4 +164,10 @@ const ButtonHolder = styled.div`
     justify-content: center;
     align-items: center;
     margin-top:2rem;
+
+    a{
+        @media(max-width: 614px) {
+        width: 100%;
+    }
+ }
 `;

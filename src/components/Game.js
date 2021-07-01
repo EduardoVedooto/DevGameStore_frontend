@@ -8,9 +8,11 @@ export default function Game({image,title, description, price, id}) {
                 <img src={image} alt = {title}/>
             </GameImg>
             <GameInfo>
-                <h2>{title.length > 29? `${title.slice(0, 29)}...` : title}</h2>
+                <div className = "title">
+                    <h2>{title.length > 29? `${title.slice(0, 29)}...` : title}</h2>
+                </div>
                 <div className = "info">
-                <h3>{`${description.slice(0, 100)}...`}</h3>
+                <h3>{`${description.slice(0, 90)}...`}</h3>
                 </div>
                 <SeeMore>
                     <h3>{(price/100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL'})}</h3>
@@ -29,6 +31,10 @@ const ThisGame = styled.div`
     border-radius: 0.8rem;
     margin-right:5rem;
     margin-bottom:2.5rem;
+    @media(max-width: 614px) {
+    width: 100%;
+    border-radius:0;
+  }
 `;
 
 const GameImg = styled.div`
@@ -53,9 +59,19 @@ const GameInfo = styled.div`
         font-size:2.2rem;
     }
 
+    .title{
+        min-height:2.2rem;
+        max-height:2.2rem;
+        text-overflow:ellipsis;
+    }
+
     .info{
-        height:5.4rem;
+        min-height:6.5rem;
+        max-height:6.5rem;
+        text-align: justify;
         text-overflow: ellipsis;
+        -webkit-line-clamp:3;
+        overflow:hidden;
         
         h3{
             font-family: 'Rubik';

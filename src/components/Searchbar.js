@@ -61,7 +61,7 @@ export default function Searchbar() {
 }
 
 const Input = styled.input`
-    width: 40rem;
+    width:100%;
     height: 5rem;
     padding:1rem;
     border-radius: .5rem;
@@ -69,15 +69,21 @@ const Input = styled.input`
     border: none;
     font-size: 1.8rem;
   @media(max-width: 614px) {
-    width: 90%;
+    width: 80%;
   }
 `;
 
 const Dropdown = styled.div`
     position:absolute;
+    width:100%;
     margin-top:4.7rem;
     border-radius: .5rem;
-    display: ${props => props.show ? "" : "none"};
+    display: ${props => props.show ? "flex" : "none"};
+    flex-direction:column;
+    @media(max-width:614px) {
+        width:80%;
+    }
+    }
     .element{
         display: flex;
         border: 0.1rem solid #444;
@@ -85,22 +91,20 @@ const Dropdown = styled.div`
         align-items:center;
         width:100%;
         @media(max-width: 614px) {
-        width:90%;
-  }
+        width:100%;
+    }
     .imgholder{
         width:30%;
         height:100%;
         @media(max-width: 614px) {
         display:none;
-  }
+    }
         img{
         width:100%;
         height:100%;
         object-fit: cover;
     }
  }
-
-    
 
     .textholder{
     padding: 1rem;
@@ -111,13 +115,14 @@ const Dropdown = styled.div`
     height:100%;
     border:none;
     margin-left:1rem;
-    text-align:justify;
+    text-align:center;
     display: flex;
     align-items: center;
+    justify-content: center;
     @media(max-width: 614px) {
         height:70%;
-        width:100%;
-  }
+        width:100%;   
+    }
     }
 }
     
@@ -128,5 +133,6 @@ const SearchHolder = styled.div`
     flex-direction: column;
     width: 40rem;
     position:relative;
-   
+    align-items: center;
+    
 `;

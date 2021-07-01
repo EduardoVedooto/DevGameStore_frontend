@@ -127,16 +127,10 @@ const HeaderContainer = styled.header`
 const HeaderContent = styled.div`
   margin: 0 auto;
   width: 100%;
-  max-width: 100rem;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &>section{
-    width: 40rem;
-    height: 5rem;
-    background-color: #fff;
-  }
 `;
 
 const Title = styled.h1`
