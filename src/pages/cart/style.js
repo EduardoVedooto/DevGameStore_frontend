@@ -6,7 +6,7 @@ export const CartContainer = styled.main`
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
   min-height: calc(100vh - 10rem);
-  margin-top: 10rem;
+  margin-top: 12rem;
   padding: 0 5rem;
 `;
 
@@ -17,22 +17,34 @@ export const ListTitle = styled.h2`
 `;
 
 export const ListItens = styled.ul`
-  background-color: purple;
   width: 100%;
-  height: 10rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
 export const Item = styled.li`
   display: flex;
-  flex-direction: column;
   width: 100%;
-  background-color: rosybrown;
+  height: 10rem;
+  padding: .5rem;
+  padding-right: 1.5rem;
+  background-color: var(--color-darker);
+  color: var(--color-lighter);
+  border-radius: 1rem;
+  
+  &:hover{
+    h3 {
+      color: var(--color-primary);
+    }
+  }
 `;
 
 export const OrderInfo = styled.aside`
   background-color: red;
   width: 100%;
-  height: 10rem;
+  
 `;
 
 export const TitleEmptyList = styled.h2`
@@ -67,4 +79,62 @@ export const Button = styled.button`
     box-shadow: 0 0 1rem rgba(0,0,0,.5);
     color: var(--color-darker)
   }
+`;
+
+export const GameInfo = styled.aside`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 1rem;
+  width: 100%;
+`;
+
+export const GameCover = styled.img`
+  height: 9rem;
+  width: 16rem;
+  object-fit: cover;
+  border-radius: .5rem;
+`;
+
+export const GameTitle = styled.h3`
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 150ms;
+`;
+
+export const ItemFooter = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const RemoveButton = styled(Button)`
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background-color: var(--color-darker);
+  transition: background 200ms;
+
+  svg {
+    width: 70%;
+    height: 70%;
+    margin: auto;
+    color: var(--color-primary);
+    transition: color 200ms;
+  }
+
+  &:hover{
+    filter: brightness(1);
+    background-color: var(--color-primary);
+    svg{
+      color: var(--color-darker);
+    }
+  }
+
+`;
+
+export const GamePrice = styled.span`
+  font-size: 1.8rem;
+  font-weight: 700;
 `;
