@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Searchbar from './Searchbar';
 // import { GiHamburgerMenu } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsPersonFill, BsPersonPlusFill, BsFillPersonLinesFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ export default function Header() {
         <Link to="/">
           <Title>DGS</Title>
         </Link>
-        <section>SERÀ O SEARCHBAR</section>
+        <Searchbar/>
         <Menu>
           {
             session ?
@@ -126,16 +127,10 @@ const HeaderContainer = styled.header`
 const HeaderContent = styled.div`
   margin: 0 auto;
   width: 100%;
-  max-width: 100rem;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &>section{
-    width: 40rem;
-    height: 5rem;
-    background-color: #fff;
-  }
 `;
 
 const Title = styled.h1`

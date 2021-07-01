@@ -21,12 +21,8 @@ export default function ThisCategory() {
             breakpoint: { max: 3000, min: 1024 },
             items: 3
         },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
+            breakpoint: { max: 614, min: 0 },
             items: 1
         }
     };
@@ -71,6 +67,9 @@ const Container = styled.div`
     margin-top: 12rem;
     padding-left:5%;
     padding-right:3%;
+    @media(max-width: 614px) {
+    padding:0;
+  }
 `;
 
 const TitleHolder = styled.div`
@@ -98,4 +97,8 @@ const ContentHolder = styled.div`
     margin-top: 5rem;
     padding-left:5%;
     padding-right:5%;
+    @media(max-width: 614px) {
+    padding:0;
+    margin-top:2.5rem;
+  }
 `;
