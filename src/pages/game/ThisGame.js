@@ -51,6 +51,7 @@ const Container = styled.div`
     margin-top:10rem;
     background-repeat: no-repeat;
     background-size:100% 40rem;
+    background-position: center 0;
 `;
 
 const GameHolder = styled.div`
