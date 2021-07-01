@@ -5,15 +5,28 @@ export const CartContainer = styled.main`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
-  min-height: calc(100vh - 12rem);
+  min-height: calc(100vh - 36.8rem);
   margin-top: 12rem;
   padding: 0 5rem;
+
+  @media(max-width: 1000px){
+    display: flex;
+    flex-direction: column;
+  }
+  @media(max-width: 650px){
+    padding: 1rem 2rem;
+  }
 `;
 
 export const ListHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media(max-width: 650px){
+    flex-direction: column;
+    height: 8.5rem;
+  }
 `;
 
 export const ListTitle = styled.h2`
@@ -66,7 +79,6 @@ export const TitleEmptyList = styled.h2`
   font-weight: 700;
   color: var(--color-lighter);
   user-select: none;
-  margin-top: auto;
 `;
 
 export const CartContainerEmpty = styled(CartContainer)`
@@ -76,6 +88,8 @@ export const CartContainerEmpty = styled(CartContainer)`
   justify-content: space-evenly;
   text-align: center;
   line-height: 3rem;
+  margin-top: 10rem;
+  min-height: calc(100vh - 34.8rem);
 `;
 
 export const Button = styled.button`
@@ -92,6 +106,12 @@ export const Button = styled.button`
     filter: brightness(1.3);
     box-shadow: 0 0 1rem rgba(0,0,0,.5);
     color: var(--color-darker)
+  }
+`;
+
+export const GoBackButton = styled(Button)`
+  @media(max-width: 650px){
+    width: 100%;
   }
 `;
 
@@ -114,6 +134,11 @@ export const GameTitle = styled.h3`
   font-size: 1.8rem;
   font-weight: 700;
   transition: color 150ms;
+
+  @media(max-width: 650px) {
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
 `;
 
 export const ItemFooter = styled.footer`
@@ -150,6 +175,10 @@ export const RemoveButton = styled(Button)`
 export const GamePrice = styled.span`
   font-size: 1.8rem;
   font-weight: 700;
+
+  @media(max-width: 650px){
+    font-size: 1.5rem;
+  }
 `;
 
 export const OrderTitle = styled.h2`

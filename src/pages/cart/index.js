@@ -1,4 +1,4 @@
-import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle, UserOn, TotalPrice, PaymentMethods, customStyles, ListHeader } from "./style";
+import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle, UserOn, TotalPrice, PaymentMethods, customStyles, ListHeader, GoBackButton } from "./style";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -8,7 +8,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import PaymentForm from "../../components/PaymentForm";
-// import Footer from "../../components/Footer";
+import Footer from "../../components/Footer";
 
 export default function Cart() {
 
@@ -60,87 +60,93 @@ export default function Cart() {
 
   if (!gamesIds || !gamesIds.length) {
     return (
-      <CartContainerEmpty>
-        <Header />
-        <TitleEmptyList>Seu carrinho está vazio</TitleEmptyList>
-        <Button onClick={() => history.push("/")}>Voltar para home</Button>
-
-      </CartContainerEmpty>
+      <>
+        <CartContainerEmpty>
+          <Header />
+          <TitleEmptyList>Seu carrinho está vazio</TitleEmptyList>
+          <Button onClick={() => history.push("/")}>Voltar para home</Button>
+        </CartContainerEmpty>
+        <Footer />
+      </>
     );
   }
 
   if (isWaitingServer) {
     return (
-      <CartContainerEmpty>
-        <Header />
-        <Loader
-          type="MutatingDots"
-          color="#DA0037"
-          secondaryColor="#171717"
-          height={100}
-          width={100}
-        />
-
-      </CartContainerEmpty>
+      <>
+        <CartContainerEmpty>
+          <Header />
+          <Loader
+            type="MutatingDots"
+            color="#DA0037"
+            secondaryColor="#171717"
+            height={100}
+            width={100}
+          />
+        </CartContainerEmpty>
+        <Footer />
+      </>
     );
   }
 
   return (
-    <CartContainer>
-      <Header />
-      <ListItens>
-        <ListHeader>
-          <ListTitle>Seu carrinho - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} itens`}</ListTitle>
-          <Button onClick={() => history.push("/")}>Continuar comprando</Button>
-        </ListHeader>
-        {gamesList && gamesList.map(game => (
-          <Item key={game.id} onClick={() => history.push(`/game/${game.id}`)}>
-            <GameCover src={game.image} alt={game.name} />
-            <GameInfo>
-              <GameTitle>{game.name}</GameTitle>
-              <ItemFooter>
-                <GamePrice>{(game.price / 100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}</GamePrice>
-                <RemoveButton onClick={e => removeGame(game.id, e)}><FaTrashAlt /></RemoveButton>
-              </ItemFooter>
-            </GameInfo>
-          </Item>
-        ))}
-      </ListItens>
-      <OrderInfo>
-        <OrderTitle>Pedido</OrderTitle>
-        {user ?
-          <UserOn>
-            <TotalPrice>Valor total:
-              <strong> {
-                gamesList &&
-                (gamesList.reduce((sum, game) => sum += game.price, 0) / 100)
-                  .toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
-              }</strong>
-            </TotalPrice>
-            <PaymentMethods>
-              <Select
-                isClearable={true}
-                styles={customStyles}
-                onChange={e => setType(e?.label)}
-                placeholder="Formas de pagamento..."
-                className="react-select-container"
-                classNamePrefix="react-select"
-                options={paymentOptions}
-              />
-              <PaymentForm type={type} checkout={checkout} />
-            </PaymentMethods>
-          </UserOn>
-          :
-          <UserOff>
-            <TitleOff>
-              <strong>Você está offline</strong> 😕<br />
-              Faça <Link to="/sign-in">login</Link>, ou
-              <Link to="/sign-up"> cadastre-se</Link> para continuar com a compra!
-            </TitleOff>
-          </UserOff>
-        }
-      </OrderInfo>
-
-    </CartContainer >
+    <>
+      <CartContainer>
+        <Header />
+        <ListItens>
+          <ListHeader>
+            <ListTitle>Seu carrinho - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} itens`}</ListTitle>
+            <GoBackButton onClick={() => history.push("/")}>Continuar comprando</GoBackButton>
+          </ListHeader>
+          {gamesList && gamesList.map(game => (
+            <Item key={game.id} onClick={() => history.push(`/game/${game.id}`)}>
+              <GameCover src={game.image} alt={game.name} />
+              <GameInfo>
+                <GameTitle>{game.name}</GameTitle>
+                <ItemFooter>
+                  <GamePrice>{(game.price / 100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}</GamePrice>
+                  <RemoveButton onClick={e => removeGame(game.id, e)}><FaTrashAlt /></RemoveButton>
+                </ItemFooter>
+              </GameInfo>
+            </Item>
+          ))}
+        </ListItens>
+        <OrderInfo>
+          <OrderTitle>Pedido</OrderTitle>
+          {user ?
+            <UserOn>
+              <TotalPrice>Valor total:
+                <strong> {
+                  gamesList &&
+                  (gamesList.reduce((sum, game) => sum += game.price, 0) / 100)
+                    .toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+                }</strong>
+              </TotalPrice>
+              <PaymentMethods>
+                <Select
+                  isClearable={true}
+                  styles={customStyles}
+                  onChange={e => setType(e?.label)}
+                  placeholder="Formas de pagamento..."
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                  options={paymentOptions}
+                />
+                <PaymentForm type={type} checkout={checkout} />
+              </PaymentMethods>
+            </UserOn>
+            :
+            <UserOff>
+              <TitleOff>
+                <strong>Você está offline</strong> 😕<br />
+                Faça <Link to="/sign-in">login</Link>, ou
+                <Link to="/sign-up"> cadastre-se</Link> para continuar com a compra!
+              </TitleOff>
+            </UserOff>
+          }
+        </OrderInfo>
+      </CartContainer >
+      <Footer />
+    </>
   );
 }

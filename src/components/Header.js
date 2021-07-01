@@ -82,7 +82,7 @@ function DropdownMenu(props) {
         if (props.to === "logout") {
           if (window.confirm("Deseja encerrar a sessão?")) {
             sessionStorage.removeItem("session");
-            // window.location.reload();
+            window.location.reload();
           }
         } else {
           history.push(props.to)
