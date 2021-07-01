@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import { TiShoppingCart } from "react-icons/ti";
@@ -38,7 +38,7 @@ export default function ThisGame() {
                 </GameHolder>
             </Container>
             <ButtonHolder>
-                <AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
+                <Link to={`/cart/${id}`}><AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart></Link>
             </ButtonHolder>
             <Footer />
         </>
