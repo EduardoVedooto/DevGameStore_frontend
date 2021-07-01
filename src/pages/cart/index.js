@@ -1,4 +1,4 @@
-import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle, UserOn, TotalPrice, PaymentMethods, customStyles } from "./style";
+import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle, UserOn, TotalPrice, PaymentMethods, customStyles, ListHeader } from "./style";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -8,6 +8,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import PaymentForm from "../../components/PaymentForm";
+// import Footer from "../../components/Footer";
 
 export default function Cart() {
 
@@ -63,6 +64,7 @@ export default function Cart() {
         <Header />
         <TitleEmptyList>Seu carrinho está vazio</TitleEmptyList>
         <Button onClick={() => history.push("/")}>Voltar para home</Button>
+
       </CartContainerEmpty>
     );
   }
@@ -78,6 +80,7 @@ export default function Cart() {
           height={100}
           width={100}
         />
+
       </CartContainerEmpty>
     );
   }
@@ -86,7 +89,10 @@ export default function Cart() {
     <CartContainer>
       <Header />
       <ListItens>
-        <ListTitle>Seu carrinho - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} itens`}</ListTitle>
+        <ListHeader>
+          <ListTitle>Seu carrinho - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} itens`}</ListTitle>
+          <Button onClick={() => history.push("/")}>Continuar comprando</Button>
+        </ListHeader>
         {gamesList && gamesList.map(game => (
           <Item key={game.id} onClick={() => history.push(`/game/${game.id}`)}>
             <GameCover src={game.image} alt={game.name} />
@@ -113,8 +119,9 @@ export default function Cart() {
             </TotalPrice>
             <PaymentMethods>
               <Select
+                isClearable={true}
                 styles={customStyles}
-                onChange={e => setType(e.label)}
+                onChange={e => setType(e?.label)}
                 placeholder="Formas de pagamento..."
                 className="react-select-container"
                 classNamePrefix="react-select"
@@ -133,6 +140,7 @@ export default function Cart() {
           </UserOff>
         }
       </OrderInfo>
+
     </CartContainer >
   );
 }

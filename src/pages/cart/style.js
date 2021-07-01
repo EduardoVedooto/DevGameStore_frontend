@@ -5,9 +5,15 @@ export const CartContainer = styled.main`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 12rem);
   margin-top: 12rem;
   padding: 0 5rem;
+`;
+
+export const ListHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const ListTitle = styled.h2`
@@ -35,11 +41,13 @@ export const Item = styled.li`
   color: var(--color-lighter);
   border-radius: 1rem;
   cursor: pointer;
-  
+  transition: box-shadow 200ms;
+
   &:hover{
     h3 {
       color: var(--color-primary);
     }
+    box-shadow: 0 0 1rem rgba(0,0,0,.5);
   }
 `;
 
@@ -50,7 +58,6 @@ export const OrderInfo = styled.aside`
   color: var(--color-lighter);
   padding: 1rem;
   height: fit-content;
-  margin-top: 3.77rem;
 `;
 
 export const TitleEmptyList = styled.h2`
@@ -59,6 +66,7 @@ export const TitleEmptyList = styled.h2`
   font-weight: 700;
   color: var(--color-lighter);
   user-select: none;
+  margin-top: auto;
 `;
 
 export const CartContainerEmpty = styled(CartContainer)`
