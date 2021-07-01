@@ -2,11 +2,13 @@ import { Form, FormTitle, Button, Input } from "../../styles/FormStyles";
 import { ContactContainer } from "./style";
 import axios from 'axios';
 import {useState} from 'react';
+import Loader from "react-loader-spinner";
 
 export default function ContactUs (){
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     function handleContact(e){
         e.preventDefault();
@@ -14,6 +16,7 @@ export default function ContactUs (){
             alert("Nenhum campo pode estar vazio.");
             return;
         }
+        setLoading(true);
         const body = {
             email,
             subject,
@@ -24,8 +27,12 @@ export default function ContactUs (){
             setEmail("");
             setSubject("");
             setMessage("");
+            setLoading(false);
         });
-        request.catch((err)=>alert(err.response.data.message));
+        request.catch((err)=>{
+            alert(err.response.data.message);
+            setLoading(false);
+        });
     }
 
     return(
@@ -53,9 +60,15 @@ export default function ContactUs (){
             setMessage(e.target.value);
         }}
         />
-        <Button type = "submit">
-          Send
-        </Button>
+        <Button disabled={loading}> {loading ?
+          <Loader
+            type="ThreeDots"
+            color="#171717"
+            height={20}
+            width={75}
+          /> :
+          "Entrar"
+        }</Button>
       </Form>
     </ContactContainer>
     )
