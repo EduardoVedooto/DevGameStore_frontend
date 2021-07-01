@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 
 export default function Dashboard() {
     const [games, setGames] = useState([]);
-
+    
     useEffect(() => {
         const request = axios.get('https://dev-game-store.herokuapp.com/dashboard')
         request.then(response => {
@@ -19,7 +19,7 @@ export default function Dashboard() {
     }, []);
     return (
         <Container>
-            <Header />
+            <Header/>
             <Section name={"Horror"} array={games.filter(e => e.category === "Horror")} category={"Horror"} />
             <Section name={"Adventure"} array={games.filter(e => e.category === "Adventure")} category={"Adventure"} />
             <Section name={"Action"} array={games.filter(e => e.category === "Action")} category={"Action"} />

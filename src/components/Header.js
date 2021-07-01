@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Searchbar from './Searchbar';
 // import { GiHamburgerMenu } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsPersonFill, BsPersonPlusFill, BsFillPersonLinesFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ export default function Header() {
         <Link to="/">
           <Title>DGS</Title>
         </Link>
-        <section>SERÀ O SEARCHBAR</section>
+        <Searchbar/>
         <Menu>
           {
             session ?
