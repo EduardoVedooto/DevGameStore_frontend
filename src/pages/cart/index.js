@@ -1,4 +1,4 @@
-import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle } from "./style";
+import { CartContainer, ListItens, ListTitle, Item, OrderInfo, TitleEmptyList, CartContainerEmpty, Button, GameCover, GameTitle, GameInfo, RemoveButton, ItemFooter, GamePrice, UserOff, TitleOff, OrderTitle, UserOn, TotalPrice, PaymentMethods, customStyles } from "./style";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -6,14 +6,23 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Select from "react-select";
+import PaymentForm from "../../components/PaymentForm";
 
 export default function Cart() {
 
   const [gamesList, setGamesList] = useState();
   const [isWaitingServer, setWaitingServer] = useState(true);
+  const [type, setType] = useState("");
   const gamesIds = JSON.parse(sessionStorage.getItem("cart"));
   const user = JSON.parse(sessionStorage.getItem("session"))?.user;
   const history = useHistory();
+  const paymentOptions = [
+    { value: 0, label: "Pix" },
+    { value: 1, label: "Crédito" },
+    { value: 2, label: "Débito" },
+    { value: 3, label: "Boleto" }
+  ];
 
   const removeGame = (id, event) => {
     event.stopPropagation();
@@ -26,6 +35,10 @@ export default function Cart() {
       games.splice(games.indexOf(gameRemoved), 1);
       setGamesList(games);
     }
+  }
+
+  const checkout = card => {
+
   }
 
   useEffect(() => {
@@ -73,7 +86,7 @@ export default function Cart() {
     <CartContainer>
       <Header />
       <ListItens>
-        <ListTitle>Seu carrinho</ListTitle>
+        <ListTitle>Seu carrinho - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} itens`}</ListTitle>
         {gamesList && gamesList.map(game => (
           <Item key={game.id} onClick={() => history.push(`/game/${game.id}`)}>
             <GameCover src={game.image} alt={game.name} />
@@ -90,7 +103,26 @@ export default function Cart() {
       <OrderInfo>
         <OrderTitle>Pedido</OrderTitle>
         {user ?
-          <></>
+          <UserOn>
+            <TotalPrice>Valor total:
+              <strong> {
+                gamesList &&
+                (gamesList.reduce((sum, game) => sum += game.price, 0) / 100)
+                  .toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+              }</strong>
+            </TotalPrice>
+            <PaymentMethods>
+              <Select
+                styles={customStyles}
+                onChange={e => setType(e.label)}
+                placeholder="Formas de pagamento..."
+                className="react-select-container"
+                classNamePrefix="react-select"
+                options={paymentOptions}
+              />
+              <PaymentForm type={type} checkout={checkout} />
+            </PaymentMethods>
+          </UserOn>
           :
           <UserOff>
             <TitleOff>

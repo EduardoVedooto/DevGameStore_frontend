@@ -50,6 +50,7 @@ export const OrderInfo = styled.aside`
   color: var(--color-lighter);
   padding: 1rem;
   height: fit-content;
+  margin-top: 3.77rem;
 `;
 
 export const TitleEmptyList = styled.h2`
@@ -174,3 +175,80 @@ export const TitleOff = styled.h3`
     }
   }
 `;
+
+export const UserOn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+export const TotalPrice = styled.span`
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 3rem;
+
+  strong{
+    color: var(--color-primary);
+  }
+`;
+
+export const PaymentMethods = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+
+  div.react-select-container{
+    margin-top: 2rem;
+    width: 100%;
+
+  }
+
+  div.react-select__control{
+    background-color: var(--color-dark);
+    border: none;
+    padding: 1rem;
+  }
+
+  div.react-select__value-container{
+    font-size: 1.8rem;
+    div {
+      color: var(--color-lighter);
+    }
+  }
+  
+  div.react-select__indicators{
+  
+  }
+
+  div.react-select__menu{
+    background-color: var(--color-light);
+
+  }
+
+  div.react-select__menu-list{
+    font-size: 1.8rem;
+    color: var(--color-dark);
+  }
+
+  div.react-select__option{
+    color: var(--color-dark);
+    transition: background 100ms;
+    :hover{
+      background-color: var(--color-lighter);
+    }
+  }
+`;
+
+export const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: '1px dotted pink',
+    color: state.isSelected ? '#000' : 'var(--color-dark)',
+    backgroundColor: state.isSelected ? 'var(--color-lighter)' : 'var(--color-light)',
+    fontWeight: state.isSelected ? "700" : "400",
+    padding: 20,
+  }),
+}
