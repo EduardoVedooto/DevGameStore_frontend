@@ -6,6 +6,7 @@ import Contact from "./pages/contact/index";
 import Signup from "./pages/sign-up";
 import Signin from "./pages/sign-in";
 import GlobalStyles from "./styles/GlobalStyles";
+import Cart from "./pages/cart";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/game/:id" exact component={Game} />
         <Route path="/sign-up" exact component={Signup} />
         <Route path="/sign-in" exact component={Signin} />
+        <Route path="/cart" exact component={Cart} />
         <Route path="/contact-us" exact component={Contact} />
       </Switch>
     </Router>

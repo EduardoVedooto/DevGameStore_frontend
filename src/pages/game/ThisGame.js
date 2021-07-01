@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import { TiShoppingCart } from "react-icons/ti";
@@ -8,6 +8,7 @@ import { TiShoppingCart } from "react-icons/ti";
 export default function ThisGame() {
     const { id } = useParams()
     const [game, setGame] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         const request = axios.get(`https://dev-game-store.herokuapp.com/game/${id}`)
@@ -19,6 +20,25 @@ export default function ThisGame() {
             alert(error.response.data);
         });
     }, [id]);
+
+    const addGame = () => {
+        const gamesSelected = JSON.parse(sessionStorage.getItem("cart"));
+        if (gamesSelected) {
+            if (gamesSelected.find(game => game === id)) {
+                if (window.confirm("Este jogo já está no seu carrinho\nDeseja removê-lo?")) {
+                    gamesSelected.splice(gamesSelected.indexOf(id), 1);
+                    sessionStorage.setItem("cart", JSON.stringify(gamesSelected));
+                }
+            }
+            else {
+                gamesSelected.push(id);
+                sessionStorage.setItem("cart", JSON.stringify(gamesSelected));
+            }
+        } else {
+            sessionStorage.setItem("cart", JSON.stringify([id]));
+        }
+        history.push('/cart');
+    }
 
     return (
         <>
@@ -37,8 +57,8 @@ export default function ThisGame() {
                     </GameInfo>
                 </GameHolder>
             </Container>
-            <ButtonHolder>
-                <Link to={`/cart/${id}`}><AddToChart><TiShoppingCart /><h1>Add this game to chart!</h1></AddToChart></Link>
+            <ButtonHolder onClick={addGame}>
+                <AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
             </ButtonHolder>
             <Footer />
         </>

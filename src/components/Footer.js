@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiFillInstagram } from "react-icons/ai";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
@@ -16,13 +16,13 @@ const Footer = () => {
         <h1>Our social media</h1>
         <div className="holder">
           <AiFillInstagram className="icon"
-          onClick ={()=>openNewTab("http://instagram.com")}
+            onClick={() => openNewTab("http://instagram.com")}
           />
           <AiFillTwitterCircle className="icon"
-          onClick ={()=>openNewTab("http://twitter.com")}
+            onClick={() => openNewTab("http://twitter.com")}
           />
           <AiFillFacebook className="icon"
-          onClick ={()=>openNewTab("http://facebook.com")}
+            onClick={() => openNewTab("http://facebook.com")}
           />
         </div>
       </Social>
