@@ -1,10 +1,14 @@
+
 import Header from "../../components/Header";
+import Dashboard from "./Dashboard";
 
 const Homescreen = () => {
   return (
-    <Header>
-      Olá mundo!
-    </Header>
+    <>
+      <Header />
+      <Dashboard />
+    </>
+
   );
 }
 

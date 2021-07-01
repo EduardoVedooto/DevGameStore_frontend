@@ -120,7 +120,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 10000;
 `;
 
 const HeaderContent = styled.div`

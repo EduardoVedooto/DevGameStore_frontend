@@ -64,6 +64,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     line-height: 1;
+    background-color:#444444;
     font-family: 'Rubik', sans-serif;
   }
   * {
