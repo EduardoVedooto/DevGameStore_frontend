@@ -1,9 +1,9 @@
-import sadface from "./sadface.png";
+import pacman from "./pacman.gif";
 import styled from "styled-components";
 export default function Sadface({message}) {
   return (
     <Container>
-      <img height="150" width="150" src={sadface} alt="sad"></img>
+      <img height="200" width="200" src={pacman} alt="sad"></img>
       <div className = "message">{message}</div>
     </Container>
   );
