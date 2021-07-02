@@ -98,7 +98,7 @@ justify-content: space-between;
 
 const TitleHolder = styled.div`
   padding:1.5rem;
-  background-color:#000;
+  background-color:var(--color-darker);
   border-radius:2rem;
   display:flex;
   text-align: center;

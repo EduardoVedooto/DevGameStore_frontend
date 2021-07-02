@@ -42,19 +42,19 @@ export default function ThisCategory() {
 
     if (isWaitingServer) {
         return (
-          <>
-            <Loading/>
-          </>
+            <>
+                <Loading />
+            </>
         );
-      }
+    }
 
-      if (games.length === 0) {
+    if (games.length === 0) {
         return (
-          <>
-            <Sadface message = "No game for this category"/>
-          </>
+            <>
+                <Sadface message="No game for this category" />
+            </>
         );
-      }
+    }
 
 
     return (
@@ -86,6 +86,7 @@ const Container = styled.div`
     margin-top: 12rem;
     padding-left:5%;
     padding-right:3%;
+    min-height: calc(100vh - 36.8rem);
     @media(max-width: 614px) {
     padding:0;
   }

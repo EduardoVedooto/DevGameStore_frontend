@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState, useRef } from "react";
 import { Link } from 'react-router-dom';
 
-export default function Searchbar() {
+export default function Searchbar(props) {
     const [gameList, setGameList] = useState([]);
     const [searching, setSearching] = useState(false);
     const [value, setValue] = useState("");
@@ -40,6 +40,8 @@ export default function Searchbar() {
     return (
         <SearchHolder ref={searchRef}>
             <Input
+
+                ref={props.ref}
                 placeholder="Search for a game..."
                 value={value}
                 onChange={(e) => {
@@ -48,8 +50,8 @@ export default function Searchbar() {
             />
             <Dropdown show={searching}>
                 {gameList.map((e, i) =>
-                    <Link to={`/game/${e.id}`}>
-                        <div key = {i} className="element">
+                    <Link key={e.id} to={`/game/${e.id}`}>
+                        <div key={i} className="element">
                             <div className="imgholder"><img src={e.image} alt={e.name} /></div>
                             <div className="textholder">{e.name}</div>
                         </div>
@@ -68,9 +70,12 @@ const Input = styled.input`
     outline: none;
     border: none;
     font-size: 1.8rem;
-  @media(max-width: 614px) {
-    width: 80%;
-  }
+    @media(max-width: 750px) {
+        box-shadow: 0 0 2rem black;
+        width: 100%;
+        height: 6rem;
+        font-size: 2.1rem;
+    }
 `;
 
 const Dropdown = styled.div`
@@ -80,27 +85,32 @@ const Dropdown = styled.div`
     border-radius: .5rem;
     display: ${props => props.show ? "flex" : "none"};
     flex-direction:column;
-    @media(max-width:614px) {
-        width:80%;
+    @media(max-width: 750px) {
+        width:100%;
+        margin-top: 6.15rem;
     }
 
     .element{
         display: flex;
         border: 0.1rem solid #444;
-        background-color:#000;
+        background-color:var(--color-darker);
         align-items:center;
         width:100%;
-            @media(max-width: 614px) {
+            @media(max-width: 750px) {
             width:100%;
+            padding: 2rem 0;
         }
 
         .imgholder{
             width:30%;
             height:100%;
-                @media(max-width: 614px) {
+            @media(max-width: 750px) {
+                width: 50%;
+            }
+            @media(max-width: 500px) {
                 display:none;
             }
-                img{
+            img{
                 width:100%;
                 height:100%;
                 object-fit: cover;
@@ -119,7 +129,7 @@ const Dropdown = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        @media(max-width: 614px) {
+        @media(max-width: 750px) {
             height:70%;
             width:100%;   
         }
@@ -133,5 +143,7 @@ const SearchHolder = styled.div`
     width: 40rem;
     position:relative;
     align-items: center;
-    
+    @media(max-width: 750px){
+        width: 100%;
+    }
 `;

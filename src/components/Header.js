@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 import Searchbar from './Searchbar';
-// import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsPersonFill, BsPersonPlusFill, BsFillPersonLinesFill } from "react-icons/bs";
 import { RiLoginBoxFill, RiLogoutBoxFill } from "react-icons/ri";
 import { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { ImSearch } from "react-icons/im";
+import SearchModal from "./SearchModal.js";
+import MobileModal from "./MobileMenu.js";
+
 
 export default function Header() {
+  const [openModal, setOpenModal] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const [open, setOpen] = useState(false);
-
   const session = JSON.parse(sessionStorage.getItem('session'));
 
+  const openSearch = () => {
+    setOpenModal(true);
+  }
 
   return (
     <HeaderContainer>
@@ -19,7 +27,7 @@ export default function Header() {
         <Link to="/">
           <Title>DGS</Title>
         </Link>
-        <Searchbar/>
+        <Searchbar />
         <Menu>
           {
             session ?
@@ -36,6 +44,15 @@ export default function Header() {
           }
         </Menu>
       </HeaderContent>
+      <MobileContent>
+        <SearchModal open={openModal} setOpen={setOpenModal} />
+        <MobileModal open={openMenu} setOpen={setOpenMenu} />
+        <ImSearch onClick={openSearch} />
+        <Link to="/">
+          <Title>DGS</Title>
+        </Link>
+        <GiHamburgerMenu onClick={() => setOpenMenu(true)} />
+      </MobileContent>
     </HeaderContainer>
   );
 }
@@ -112,6 +129,8 @@ function DropdownMenu(props) {
   );
 }
 
+
+
 const HeaderContainer = styled.header`
   width: 100%;
   height: 10rem;
@@ -122,6 +141,9 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   z-index: 10000;
+  @media(max-width: 750px) {
+    padding: 0 2rem;
+  }
 `;
 
 const HeaderContent = styled.div`
@@ -131,6 +153,9 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media(max-width: 750px){
+    display: none;
+  }
 `;
 
 const Title = styled.h1`
@@ -140,6 +165,10 @@ const Title = styled.h1`
   transition: filter 300ms ease-in-out;
   :hover{
     filter: brightness(1.5);
+  }
+
+  @media(max-width: 750px){
+    font-size: 4.2rem;
   }
 `;
 
@@ -234,5 +263,23 @@ const DropdownItemStyle = styled.div`
       width: 70%;
       height: 70%;
     }
+  }
+`;
+
+const MobileContent = styled.div`
+  display: none;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  svg{
+    width: 4.5rem;
+    height: 4.5rem;
+    color: var(--color-dark);
+  }
+  @media(max-width: 750px){
+    display: flex;
   }
 `;

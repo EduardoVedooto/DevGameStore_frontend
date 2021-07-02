@@ -47,9 +47,10 @@ export const ListItens = styled.ul`
 export const Item = styled.li`
   display: flex;
   width: 100%;
-  height: 10rem;
+  height: 15rem;
   padding: .5rem;
   padding-right: 1.5rem;
+  align-items: center;
   background-color: var(--color-darker);
   color: var(--color-lighter);
   border-radius: 1rem;
@@ -121,13 +122,17 @@ export const GameInfo = styled.aside`
   justify-content: space-around;
   margin-left: 1rem;
   width: 100%;
+  height: 100%;
 `;
 
 export const GameCover = styled.img`
-  height: 9rem;
-  width: 16rem;
+  height: 14rem;
+  width: 25rem;
   object-fit: cover;
   border-radius: .5rem;
+  @media(max-width: 614px){
+    width: 18rem;
+  }
 `;
 
 export const GameTitle = styled.h3`
@@ -149,8 +154,8 @@ export const ItemFooter = styled.footer`
 
 export const RemoveButton = styled(Button)`
   display: flex;
-  width: 2rem;
-  height: 2rem;
+  width: 5rem;
+  height: 5rem;
   padding: 0;
   background-color: var(--color-darker);
   transition: background 200ms;
@@ -283,7 +288,7 @@ export const customStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px dotted pink',
-    color: state.isSelected ? '#000' : 'var(--color-dark)',
+    color: state.isSelected ? 'var(--color-darker)' : 'var(--color-dark)',
     backgroundColor: state.isSelected ? 'var(--color-lighter)' : 'var(--color-light)',
     fontWeight: state.isSelected ? "700" : "400",
     padding: 20,
