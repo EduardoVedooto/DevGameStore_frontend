@@ -18,7 +18,7 @@ const Container = styled.main`
     text-align: center;
     margin-top: 10rem;
     min-height: calc(100vh - 34.8rem);
-    font-family: 'Arial';
+    font-family: 'Rubik';
     color:#DA0037;
     font-size: 3rem;
     font-weight: bold;
