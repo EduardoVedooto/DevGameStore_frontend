@@ -6,7 +6,7 @@ import Game from "../../components/Game";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Loading from '../../components/Loading';
-import Sadface from '../../components/sadface/Sadface';
+import Pacman from '../../components/pacman/Pacman';
 
 export default function ThisCategory() {
     const { category } = useParams()
@@ -51,7 +51,7 @@ export default function ThisCategory() {
       if (games.length === 0) {
         return (
           <>
-            <Sadface message = "No game for this category"/>
+            <Pacman message = "No game for this category"/>
           </>
         );
       }
