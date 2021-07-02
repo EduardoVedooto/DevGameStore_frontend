@@ -35,17 +35,17 @@ export default function MobileModal(props) {
       <ModalStyles />
       <MenuList>
         <ListItem onClick={() => history.push("/")}><AiFillHome />Home</ListItem>
-        <ListItem onClick={() => history.push("/cart")}><FaShoppingCart />Carrinho</ListItem>
+        <ListItem onClick={() => history.push("/cart")}><FaShoppingCart />Cart</ListItem>
         {
           loggedIn ?
             <>
-              <ListItem onClick={() => history.push(`/profile/${session.user.id}`)}><BsFillPersonLinesFill />Perfil</ListItem>
-              <ListItem onClick={Logout}><RiLogoutBoxFill />Sair</ListItem>
+              <ListItem onClick={() => history.push(`/profile/${session.user.id}`)}><BsFillPersonLinesFill />Profile</ListItem>
+              <ListItem onClick={Logout}><RiLogoutBoxFill />Logout</ListItem>
             </>
             :
             <>
-              <ListItem onClick={() => history.push("/sign-up")}><BsFillPersonPlusFill />Cadastro</ListItem>
-              <ListItem onClick={() => history.push("/sign-in")}><RiLoginBoxFill />Login</ListItem>
+              <ListItem onClick={() => history.push("/sign-up")}><BsFillPersonPlusFill />Sign up</ListItem>
+              <ListItem onClick={() => history.push("/sign-in")}><RiLoginBoxFill />Sign in</ListItem>
             </>
         }
       </MenuList>

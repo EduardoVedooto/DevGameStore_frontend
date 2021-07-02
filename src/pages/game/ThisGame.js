@@ -29,7 +29,7 @@ export default function ThisGame() {
         const gamesSelected = JSON.parse(sessionStorage.getItem("cart"));
         if (gamesSelected) {
             if (gamesSelected.find(game => game === id)) {
-                if (window.confirm("Este jogo já está no seu carrinho\nDeseja removê-lo?")) {
+                if (window.confirm("This game is already in your cart.\nDo you wish to remove it?")) {
                     gamesSelected.splice(gamesSelected.indexOf(id), 1);
                     sessionStorage.setItem("cart", JSON.stringify(gamesSelected));
                 }
@@ -79,7 +79,7 @@ export default function ThisGame() {
                 </GameHolder>
             </Container>
             <ButtonHolder onClick={addGame}>
-                <AddToChart><TiShoppingCart /><h1>Gostou desse jogo? Adicione ao seu carrinho!</h1></AddToChart>
+                <AddToChart><TiShoppingCart /><h1>Add this game to your cart!</h1></AddToChart>
             </ButtonHolder>
         </>
 

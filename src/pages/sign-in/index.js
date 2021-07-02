@@ -50,9 +50,9 @@ export default function Signin() {
     <SigninContainer>
       <Header />
       <Form onSubmit={handleSubmit}>
-        <FormTitle>Inicar sessão</FormTitle>
+        <FormTitle>Sign-in</FormTitle>
         <Input value={email} placeholder="E-mail" onChange={handleChange} required />
-        <Input value={password} placeholder="Senha" type="password" onChange={handleChange} required />
+        <Input value={password} placeholder="Password" type="password" onChange={handleChange} required />
         <Button disabled={isWaitingServer}> {isWaitingServer ?
           <Loader
             type="ThreeDots"
@@ -60,7 +60,7 @@ export default function Signin() {
             height={20}
             width={75}
           /> :
-          "Entrar"
+          "Sign in"
         }</Button>
       </Form>
     </SigninContainer>

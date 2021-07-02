@@ -21,14 +21,14 @@ export default function Cart() {
   const totalPrice = gamesList && gamesList.reduce((sum, game) => sum += game.price, 0);
   const paymentOptions = [
     { value: 0, label: "Pix" },
-    { value: 1, label: "Crédito" },
-    { value: 2, label: "Débito" },
-    { value: 3, label: "Boleto" }
+    { value: 1, label: "Credit" },
+    { value: 2, label: "Debit" },
+    { value: 3, label: "Ticket" }
   ];
 
   const removeGame = (id, event) => {
     event.stopPropagation();
-    if (window.confirm("Deseja remover o jogo do seu carrinho?")) {
+    if (window.confirm("Do you wish to remove this game from your cart?")) {
       const cart = JSON.parse(sessionStorage.getItem("cart"));
       cart.splice(cart.indexOf(id), 1);
       sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -54,7 +54,7 @@ export default function Cart() {
       headers: { Authorization: `Bearer ${token}` }
     });
     promise.then(() => {
-      window.alert("Pedido realizado!");
+      window.alert("Your order has been received!");
       sessionStorage.removeItem("cart");
       history.push("/");
     });
@@ -96,8 +96,8 @@ export default function Cart() {
       <>
         <CartContainerEmpty>
           <Header />
-          <TitleEmptyList>Seu carrinho está vazio</TitleEmptyList>
-          <Button onClick={() => history.push("/")}>Voltar para home</Button>
+          <TitleEmptyList>Your cart is empty</TitleEmptyList>
+          <Button onClick={() => history.push("/")}>Return to the homepage</Button>
         </CartContainerEmpty>
         <Footer />
       </>
@@ -128,8 +128,8 @@ export default function Cart() {
         <Header />
         <ListItens>
           <ListHeader>
-            <ListTitle>Seu carrinho - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} itens`}</ListTitle>
-            <GoBackButton onClick={() => history.push("/")}>Continuar comprando</GoBackButton>
+            <ListTitle>Your cart - {gamesList && gamesList.length === 1 ? "1 item" : `${gamesList && gamesList.length} items`}</ListTitle>
+            <GoBackButton onClick={() => history.push("/")}>Keep buying</GoBackButton>
           </ListHeader>
           {gamesList && gamesList.map(game => (
             <Item key={game.id} onClick={() => history.push(`/game/${game.id}`)}>
@@ -145,10 +145,10 @@ export default function Cart() {
           ))}
         </ListItens>
         <OrderInfo>
-          <OrderTitle>Pedido</OrderTitle>
+          <OrderTitle>Order</OrderTitle>
           {user ?
             <UserOn>
-              <TotalPrice>Valor total:
+              <TotalPrice>Total price:
                 <strong> {
                   gamesList && (totalPrice / 100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
                 }</strong>
@@ -158,7 +158,7 @@ export default function Cart() {
                   isClearable={true}
                   styles={customStyles}
                   onChange={e => setType(e?.label)}
-                  placeholder="Formas de pagamento..."
+                  placeholder="Payment methods..."
                   className="react-select-container"
                   classNamePrefix="react-select"
                   options={paymentOptions}
@@ -169,9 +169,9 @@ export default function Cart() {
             :
             <UserOff>
               <TitleOff>
-                <strong>Você está offline</strong> 😕<br />
-                Faça <Link to="/sign-in">login</Link>, ou
-                <Link to="/sign-up"> cadastre-se</Link> para continuar com a compra!
+                <strong>You are not logged in</strong> 😕<br />
+                <Link to="/sign-in">Login</Link>, or
+                <Link to="/sign-up"> sign up</Link> to proceed!
               </TitleOff>
             </UserOff>
           }

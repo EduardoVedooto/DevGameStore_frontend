@@ -18,7 +18,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (!user) {
-      window.alert("Você está desconectado, por favor, faça login novamente!")
+      window.alert("You are not connected. Please, sign in again!")
       sessionStorage.removeItem("session");
       history.push("/sign-in");
     } else {
@@ -31,7 +31,7 @@ export default function Profile() {
   const EnableInputs = () => {
 
     if (!isDisable) {
-      if (window.confirm("Deseja cancelar a edição?")) {
+      if (window.confirm("Do you wish to cancel the edition?")) {
         setDisable(true);
       }
     } else {
@@ -77,7 +77,7 @@ export default function Profile() {
       const session = JSON.parse(sessionStorage.getItem("session"));
       session.user = data
       sessionStorage.setItem("session", JSON.stringify(session));
-      window.alert("Usuário atualizado");
+      window.alert("User updated successfully!");
       history.push("/");
     });
     promise.catch(err => {
@@ -95,7 +95,7 @@ export default function Profile() {
       <ProfileContainer>
         <LeftPanel>
           {user && user.picture ?
-            <ProfilePicture src={user.picture} alt="Foto do perfil" />
+            <ProfilePicture src={user.picture} alt="Profile pic" />
             :
             <IoPersonCircleSharp />
           }
@@ -104,7 +104,7 @@ export default function Profile() {
         <RightPanel>
           <UserInfo>
             <InputWrapper>
-              <Label htmlFor="name">Nome</Label>
+              <Label htmlFor="name">Name</Label>
               <Input disabled={isDisable} id="name" value={name} onChange={handleChange} />
             </InputWrapper>
             <InputWrapper>
@@ -112,13 +112,13 @@ export default function Profile() {
               <Input disabled={isDisable} id="email" value={email} onChange={handleChange} />
             </InputWrapper>
             <InputWrapper>
-              <Label htmlFor="picture">Foto do perfil</Label>
+              <Label htmlFor="picture">Profile picture</Label>
               <Input disabled={isDisable} id="picture" value={picture || ""} placeholder={picture || "URL"} onChange={handleChange} />
             </InputWrapper>
           </UserInfo>
           <Buttons>
-            <Button onClick={EnableInputs} >{isDisable ? "Editar" : "Cancelar"}</Button>
-            <SaveButton onClick={UpdateUser} isDisable={isDisable}>Salvar</SaveButton>
+            <Button onClick={EnableInputs} >{isDisable ? "Edit" : "Cancel"}</Button>
+            <SaveButton onClick={UpdateUser} isDisable={isDisable}>Save</SaveButton>
           </Buttons>
         </RightPanel>
       </ProfileContainer>
