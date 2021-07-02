@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import Loading from '../../components/Loading';
-import Sadface from '../../components/sadface/Sadface';
+import Pacman from '../../components/pacman/Pacman';
 
 export default function ThisGame() {
     const { id } = useParams()
@@ -55,7 +55,7 @@ export default function ThisGame() {
     if (game.length === 0) {
         return (
             <>
-                <Sadface message="No game found" />
+                <Pacman message="No game found" />
             </>
         );
     }
