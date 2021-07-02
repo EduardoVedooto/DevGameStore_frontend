@@ -70,7 +70,7 @@ export default function Profile() {
       picture
     }
 
-    const promise = axios.put("http://localhost:4000/update-user", { ...body }, {
+    const promise = axios.put("https://dev-game-store.herokuapp.com/update-user", { ...body }, {
       headers: { "Authorization": `Bearer ${token}` }
     });
     promise.then(({ data }) => {

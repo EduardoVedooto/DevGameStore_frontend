@@ -14,7 +14,7 @@ export default function Searchbar(props) {
             setSearching(false);
             return;
         }
-        const request = axios.get(`http://localhost:4000/gamelist?gamename=${value}`);
+        const request = axios.get(`https://dev-game-store.herokuapp.com/gamelist?gamename=${value}`);
         request.then((response) => {
             setGameList(response.data);
             setSearching(true);
