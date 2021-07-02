@@ -61,11 +61,16 @@ export default function PaymentForm(props) {
     const validation = Validate(body, "checkout");
     if (!validation.result) {
       window.alert(validation.message);
-
       return;
     }
-    checkout(body);
+    checkout(body, type === "Débito" ? "deb" : "cre");
   }
+
+  const finalizeOrder = e => {
+    e.preventDefault();
+    checkout();
+  }
+
 
   if (type === "Pix") {
     return (
@@ -127,7 +132,7 @@ export default function PaymentForm(props) {
 
   else if (type === "Boleto") {
     return (
-      <FormContainer>
+      <FormContainer onSubmit={finalizeOrder}>
         <strong>Boleto</strong>
         <Message>
           O boleto será enviado para o seu email em até 15 minutos!<br /><br />

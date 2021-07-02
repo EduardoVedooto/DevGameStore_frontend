@@ -31,7 +31,7 @@ export default function Signin() {
     }
     setWaitingServer(true);
 
-    const promise = axios.post("https://dev-game-store.herokuapp.com/sign-in", { email, password });
+    const promise = axios.post("http://localhost:4000/sign-in", { email, password });
     promise.then(({ data }) => {
       sessionStorage.setItem("session", JSON.stringify(data));
       setWaitingServer(false);
