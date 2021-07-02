@@ -116,7 +116,7 @@ function DropdownMenu(props) {
     <DropdownStyle ref={dropdown}>
       {user ?
         <>
-          <DropdownItem to="/profile/:id" icon={<BsFillPersonLinesFill />}>Profile</DropdownItem>
+          <DropdownItem to="/profile" icon={<BsFillPersonLinesFill />}>Profile</DropdownItem>
           <DropdownItem to="logout" icon={<RiLogoutBoxFill />}>Logout</DropdownItem>
         </>
         :
