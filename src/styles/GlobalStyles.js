@@ -54,6 +54,7 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
   :root{
     font-size: 62.5%;
