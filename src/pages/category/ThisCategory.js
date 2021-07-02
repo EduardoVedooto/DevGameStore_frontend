@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import Game from "../../components/Game";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Footer from "../../components/Footer";
-
+import Loading from '../../components/Loading';
+import Sadface from '../../components/sadface/Sadface';
 
 export default function ThisCategory() {
     const { category } = useParams()
     const [games, setGames] = useState([]);
+    const [isWaitingServer, setWaitingServer] = useState(true);
 
     const responsive = {
         superLargeDesktop: {
@@ -31,11 +32,30 @@ export default function ThisCategory() {
         const request = axios.get(`https://dev-game-store.herokuapp.com/games/${category}`)
         request.then(response => {
             setGames(response.data);
+            setWaitingServer(false);
         });
         request.catch((error) => {
             alert(error.response.data);
+            setWaitingServer(false);
         });
     }, [category]);
+
+    if (isWaitingServer) {
+        return (
+          <>
+            <Loading/>
+          </>
+        );
+      }
+
+      if (games.length === 0) {
+        return (
+          <>
+            <Sadface message = "No game for this category"/>
+          </>
+        );
+      }
+
 
     return (
         <>
@@ -57,7 +77,6 @@ export default function ThisCategory() {
                     </ContentHolder>
                 </TitleHolder>
             </Container>
-            <Footer />
         </>
     )
 }
