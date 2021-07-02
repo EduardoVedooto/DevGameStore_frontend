@@ -7,6 +7,7 @@ import Signup from "./pages/sign-up";
 import Signin from "./pages/sign-in";
 import GlobalStyles from "./styles/GlobalStyles";
 import Cart from "./pages/cart";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/sign-in" exact component={Signin} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/contact-us" exact component={Contact} />
+        <Route path="/profile/:id" exact component={Profile} />
       </Switch>
     </Router>
   );
