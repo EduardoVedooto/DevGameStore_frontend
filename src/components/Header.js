@@ -71,7 +71,7 @@ function MenuItem(props) {
     }>
       <Icon>
         {props.img ?
-          <img src={props.img} alt="Foto de perfil" />
+          <img src={props.img} alt="Profile pic" />
           :
           props.icon}
       </Icon>
@@ -98,7 +98,7 @@ function DropdownMenu(props) {
     return (
       <DropdownItemStyle onClick={() => {
         if (props.to === "logout") {
-          if (window.confirm("Deseja encerrar a sessão?")) {
+          if (window.confirm("Do you wish to finish your session?")) {
             sessionStorage.removeItem("session");
             window.location.reload();
           }
@@ -116,13 +116,13 @@ function DropdownMenu(props) {
     <DropdownStyle ref={dropdown}>
       {user ?
         <>
-          <DropdownItem to="/profile/:id" icon={<BsFillPersonLinesFill />}>Perfil</DropdownItem>
-          <DropdownItem to="logout" icon={<RiLogoutBoxFill />}>Sair</DropdownItem>
+          <DropdownItem to="/profile/:id" icon={<BsFillPersonLinesFill />}>Profile</DropdownItem>
+          <DropdownItem to="logout" icon={<RiLogoutBoxFill />}>Logout</DropdownItem>
         </>
         :
         <>
-          <DropdownItem to="/sign-up" icon={<BsPersonPlusFill />}>Cadastrar</DropdownItem>
-          <DropdownItem to="/sign-in" icon={<RiLoginBoxFill />}>Entrar</DropdownItem>
+          <DropdownItem to="/sign-up" icon={<BsPersonPlusFill />}>Sign up</DropdownItem>
+          <DropdownItem to="/sign-in" icon={<RiLoginBoxFill />}>Sign in</DropdownItem>
         </>
       }
     </DropdownStyle>

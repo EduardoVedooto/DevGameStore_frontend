@@ -63,7 +63,7 @@ export default function PaymentForm(props) {
       window.alert(validation.message);
       return;
     }
-    checkout(body, type === "Débito" ? "deb" : "cre");
+    checkout(body, type === "Debit" ? "deb" : "cre");
   }
 
   const finalizeOrder = e => {
@@ -83,32 +83,32 @@ export default function PaymentForm(props) {
           height={200}
           includeMargin={true}
         />
-        <Message>Abra o aplicativo do seu banco e escolha a opção<br /> <Emphasis>"Escanear código QR"</Emphasis></Message>
+        <Message>Open your bank application and choose the option<br /> <Emphasis>"Scan QR Code"</Emphasis></Message>
       </FormContainer>
     );
   }
-  else if (type === "Débito" || type === "Crédito") {
+  else if (type === "Debit" || type === "Credit") {
     return (
       <FormContainer onSubmit={verifyInputs}>
-        <strong>Cartão de {type}</strong>
+        <strong>{type} Card</strong>
         <InputWrapper>
-          <label htmlFor="CardNumber">Número do cartão</label>
+          <label htmlFor="CardNumber">Card number</label>
           <Input value={cardNumber} onChange={e => setCardNumber(e.target.value)} maxLength="16" placeholder="xxxx xxxx xxxx xxxx" id="CardNumber" required />
         </InputWrapper>
         <InputWrapper>
-          <label htmlFor="CardName">Nome do cartão</label>
+          <label htmlFor="CardName">Card name</label>
           <Input value={cardName} onChange={e => setCardName(e.target.value)} placeholder="JOHN DOE" id="CardName" required />
         </InputWrapper>
         <InputWrapper>
-          <label htmlFor="CVV">Código de segurança (CVV)</label>
+          <label htmlFor="CVV">Card Security Code (CSC)</label>
           <Input value={cvv} onChange={e => setCvv(e.target.value)} maxLength="4" minLength="3" placeholder="xxx" id="CVV" required />
         </InputWrapper>
         <InputWrapper>
-          <label>Data de expiração</label>
+          <label>Expiry date</label>
           <InputWrapperHorizontal>
             <Select
               styles={customStyles}
-              placeholder="Mês"
+              placeholder="Month"
               options={months}
               className="month-container"
               classNamePrefix="month"
@@ -116,7 +116,7 @@ export default function PaymentForm(props) {
             />
             <Select
               styles={customStyles}
-              placeholder="Ano"
+              placeholder="Year"
               options={years}
               className="year-container"
               classNamePrefix="year"
@@ -125,22 +125,22 @@ export default function PaymentForm(props) {
           </InputWrapperHorizontal>
 
         </InputWrapper>
-        <Button>Finalizar compra</Button>
+        <Button>Finish your order</Button>
       </FormContainer>
     );
   }
 
-  else if (type === "Boleto") {
+  else if (type === "Ticket") {
     return (
       <FormContainer onSubmit={finalizeOrder}>
-        <strong>Boleto</strong>
+        <strong>Ticket</strong>
         <Message>
-          O boleto será enviado para o seu email em até 15 minutos!<br /><br />
-          Email cadastrado<br />
+          The Ticket will be sent to your e-mail in up to 15 minutes!<br /><br />
+          Registered e-mail<br />
           <Emphasis>{JSON.parse(sessionStorage.getItem("session")).user.email}</Emphasis>
         </Message>
 
-        <Button>Finalizar compra</Button>
+        <Button>Finish your order</Button>
       </FormContainer >
     );
   }

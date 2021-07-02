@@ -18,13 +18,13 @@ export default function Signup() {
 
   function handleChange({ target }) {
     const { placeholder, value } = target;
-    if (placeholder === "Nome") {
+    if (placeholder === "Name") {
       setName(value);
     } else if (placeholder === "E-mail") {
       setEmail(value);
-    } else if (placeholder === "Senha") {
+    } else if (placeholder === "Password") {
       setPassword(value);
-    } else if (placeholder === "Confirmar senha") {
+    } else if (placeholder === "Confirm password") {
       setConfirmPassword(value);
     } else {
       setPicture(value);
@@ -49,7 +49,7 @@ export default function Signup() {
     promise.catch(err => {
       setWaitingServer(false);
       if (err.response.status === 401) {
-        window.alert("E-mail já cadastrado");
+        window.alert("E-mail already registered!");
       }
 
       console.log(err.response);
@@ -62,12 +62,12 @@ export default function Signup() {
     <SignupContainer>
       <Header />
       <Form onSubmit={handleSubmit}>
-        <FormTitle>Novo usuário</FormTitle>
-        <Input value={name} placeholder="Nome" onChange={handleChange} required />
+        <FormTitle>New user</FormTitle>
+        <Input value={name} placeholder="Name" onChange={handleChange} required />
         <Input value={email} placeholder="E-mail" onChange={handleChange} required />
-        <Input value={password} placeholder="Senha" type="password" onChange={handleChange} required />
-        <Input value={confirmPassword} placeholder="Confirmar senha" type="password" onChange={handleChange} required />
-        <Input value={picture} placeholder="Imagem de perfil (URL)" onChange={handleChange} />
+        <Input value={password} placeholder="Password" type="password" onChange={handleChange} required />
+        <Input value={confirmPassword} placeholder="Confirm password" type="password" onChange={handleChange} required />
+        <Input value={picture} placeholder="Profile picture (URL)" onChange={handleChange} />
         <Button disabled={isWaitingServer}> {isWaitingServer ?
           <Loader
             type="ThreeDots"
@@ -75,7 +75,7 @@ export default function Signup() {
             height={20}
             width={75}
           /> :
-          "Cadastrar-se"
+          "Sign up"
         }</Button>
       </Form>
     </SignupContainer>
