@@ -45,7 +45,7 @@ export default function Cart() {
       id: game.id
     }));
 
-    const promise = axios.post("http://localhost:4000/checkout", {
+    const promise = axios.post("https://dev-game-store.herokuapp.com/checkout", {
       games: gamesSelected,
       total: totalPrice,
       card: card && card
@@ -65,7 +65,7 @@ export default function Cart() {
 
   useEffect(() => {
     if (gamesIds && gamesIds.length) {
-      const promise = axios.post("http://localhost:4000/cart", {
+      const promise = axios.post("https://dev-game-store.herokuapp.com/cart", {
         ids: gamesIds || []
       });
       promise.then(response => {

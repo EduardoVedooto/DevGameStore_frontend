@@ -22,7 +22,7 @@ export default function ContactUs (){
             subject,
             message
         }
-        const request = axios.post('http://localhost:4000/contact-us', body);
+        const request = axios.post('https://dev-game-store.herokuapp.com/contact-us', body);
         request.then(()=>{
             setEmail("");
             setSubject("");
