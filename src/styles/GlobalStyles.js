@@ -72,6 +72,12 @@ const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  *:focus {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
 `;
 
 export default GlobalStyles;
