@@ -81,6 +81,23 @@ const Validate = (data, from) => {
       }
     }
   }
+
+  else if (from === "update") {
+    const { name, email } = data;
+
+    if (name.length > 40 || name.trim().length === 0) {
+      return {
+        result: false,
+        message: "nome inválido"
+      }
+    }
+    if (!validEmail.test(email)) {
+      return {
+        result: false,
+        message: "E-mail inválido"
+      }
+    }
+  }
   return { result: true };
 }
 

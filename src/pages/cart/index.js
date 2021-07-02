@@ -138,9 +138,9 @@ export default function Cart() {
                 <GameTitle>{game.name}</GameTitle>
                 <ItemFooter>
                   <GamePrice>{(game.price / 100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}</GamePrice>
-                  <RemoveButton onClick={e => removeGame(game.id, e)}><FaTrashAlt /></RemoveButton>
                 </ItemFooter>
               </GameInfo>
+              <RemoveButton onClick={e => removeGame(game.id, e)}><FaTrashAlt /></RemoveButton>
             </Item>
           ))}
         </ListItens>

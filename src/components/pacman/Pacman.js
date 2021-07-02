@@ -1,10 +1,10 @@
 import pacman from "./pacman.gif";
 import styled from "styled-components";
-export default function Sadface({message}) {
+export default function Sadface({ message }) {
   return (
     <Container>
       <img height="200" width="200" src={pacman} alt="sad"></img>
-      <div className = "message">{message}</div>
+      <div className="message">{message}</div>
     </Container>
   );
 }
@@ -24,7 +24,8 @@ const Container = styled.main`
     font-weight: bold;
 
     .message{
-        background-color:#000;
+        background-color:var(--color-darker);
         width:100%;
+        padding: 1rem 0;
     }
 `;

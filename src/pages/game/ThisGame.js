@@ -46,19 +46,19 @@ export default function ThisGame() {
 
     if (isWaitingServer) {
         return (
-          <>
-            <Loading/>
-          </>
+            <>
+                <Loading />
+            </>
         );
-      }
+    }
 
-      if (game.length === 0) {
+    if (game.length === 0) {
         return (
-          <>
-            <Pacman message = "No game found"/>
-          </>
+            <>
+                <Pacman message="No game found" />
+            </>
         );
-      }
+    }
 
 
     return (
@@ -156,13 +156,14 @@ const ImgHolder = styled.div`
 const InfoHolder = styled.div`
     padding:2rem;
     border-radius:2rem;
-    background-color:#000;
+    background-color:var(--color-darker);
     margin-top:2rem;
     width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
     text-align:justify;
+    line-height: 3rem;
     h2{
         font-family:'Rubik';
         font-size:2rem;
