@@ -11,13 +11,14 @@ import PaymentForm from "../../components/PaymentForm";
 import Footer from "../../components/Footer";
 
 export default function Cart() {
-
   const [gamesList, setGamesList] = useState();
   const [isWaitingServer, setWaitingServer] = useState(true);
   const [type, setType] = useState("");
   const gamesIds = JSON.parse(sessionStorage.getItem("cart"));
   const user = JSON.parse(sessionStorage.getItem("session"))?.user;
+  const token = JSON.parse(sessionStorage.getItem("session"))?.token;
   const history = useHistory();
+  const totalPrice = gamesList && gamesList.reduce((sum, game) => sum += game.price, 0);
   const paymentOptions = [
     { value: 0, label: "Pix" },
     { value: 1, label: "Crédito" },
@@ -38,7 +39,27 @@ export default function Cart() {
     }
   }
 
-  const checkout = card => {
+  const checkout = (card, type) => {
+    const gamesSelected = gamesList.map(game => ({
+      price: game.price,
+      id: game.id
+    }));
+
+    const promise = axios.post("http://localhost:4000/checkout", {
+      games: gamesSelected,
+      total: totalPrice,
+      card: card && card
+    }, {
+      params: { type: type || "bol" },
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    promise.then(() => {
+      window.alert("Pedido realizado!");
+      sessionStorage.removeItem("cart");
+      history.push("/");
+    });
+    promise.catch(e => console.error(e));
+
 
   }
 
@@ -47,11 +68,23 @@ export default function Cart() {
       const promise = axios.post("http://localhost:4000/cart", {
         ids: gamesIds || []
       });
-      promise.then(({ data }) => {
+      promise.then(response => {
+        if (response.status === 206) {
+          const ids = JSON.parse(sessionStorage.getItem("cart"));
+          const objIds = {};
+          for (let i = 0; i < ids.length; i++) {
+            objIds[ids[i]] = ids[i];
+          }
+          const validIds = response.data.filter(game => objIds[game.id]);
+          sessionStorage.setItem("cart", JSON.stringify(validIds.map(game => game.id)));
+        }
         setWaitingServer(false);
-        setGamesList(data);
+        setGamesList(response.data);
       });
       promise.catch(err => {
+        if (err.response.status === 404) {
+          sessionStorage.removeItem("cart");
+        }
         setWaitingServer(false);
         console.error(err.response.data);
       });
@@ -117,9 +150,7 @@ export default function Cart() {
             <UserOn>
               <TotalPrice>Valor total:
                 <strong> {
-                  gamesList &&
-                  (gamesList.reduce((sum, game) => sum += game.price, 0) / 100)
-                    .toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+                  gamesList && (totalPrice / 100).toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
                 }</strong>
               </TotalPrice>
               <PaymentMethods>
