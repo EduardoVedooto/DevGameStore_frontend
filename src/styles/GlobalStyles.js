@@ -53,6 +53,7 @@ const GlobalStyles = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
   :root{
     font-size: 62.5%;
