@@ -39,7 +39,7 @@ export default function MobileModal(props) {
         {
           loggedIn ?
             <>
-              <ListItem onClick={() => history.push(`/profile/${session.user.id}`)}><BsFillPersonLinesFill />Profile</ListItem>
+              <ListItem onClick={() => history.push(`/profile`)}><BsFillPersonLinesFill />Profile</ListItem>
               <ListItem onClick={Logout}><RiLogoutBoxFill />Logout</ListItem>
             </>
             :
