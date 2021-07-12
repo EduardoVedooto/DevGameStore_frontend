@@ -67,7 +67,7 @@ export default function ContactUs (){
             height={20}
             width={75}
           /> :
-          "Entrar"
+          "Send"
         }</Button>
       </Form>
     </ContactContainer>
